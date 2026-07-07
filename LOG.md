@@ -211,3 +211,42 @@ Test the onboard photoresistor using MicroPython ADC.
 - Repeat or investigate the photoresistor ADC test before marking it as working.
 - Test the RGB LED, buzzer, and serial LED strip one by one.
 - Record each result in `LOG.md`.
+
+## 2026-07-07
+
+### Goal
+
+Repeat the onboard photoresistor ADC test using Thonny.
+
+### Work done
+
+- Opened `firmware/tests/test_photoresistor.py` in Thonny.
+- Ran the script on the ESP32-C6 board.
+- Used GPIO 3 based on PCB label `PHOTO(3)`.
+- Collected readings with the photoresistor exposed to room light.
+- Collected readings with the photoresistor covered.
+
+### Observations
+
+- Exposed average reading: 6543.4
+- Covered average reading: 6546.6
+- Absolute difference: 3.2
+- The exposed and covered readings are almost identical.
+- The photoresistor response is still inconclusive.
+
+### Issues / open questions
+
+- The measured difference is too small to validate the photoresistor.
+- Possible causes:
+  - GPIO 3 may need confirmation.
+  - ADC configuration may need adjustment.
+  - The wrong physical component may have been covered.
+  - The photoresistor circuit may require supervisor confirmation.
+  - A hardware issue is possible.
+
+### Next steps
+
+- Leave the photoresistor test marked as inconclusive.
+- Continue Week 1 hardware bring-up with the other peripherals.
+- Test RGB LED, buzzer, and serial LED strip one by one.
+- Ask the supervisor for confirmation if the photoresistor continues to show no clear response.

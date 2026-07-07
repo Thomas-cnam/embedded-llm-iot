@@ -16,3 +16,7 @@
 - [ ] Test RGB LED
 - [ ] Test serial LED strip
 - [ ] Record all results in `LOG.md`
+
+## Notes
+
+- Photoresistor test repeated in Thonny, but result remains inconclusive.
