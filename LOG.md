@@ -75,3 +75,36 @@ Verify USB serial connection and MicroPython REPL access on the ESP32-C6 board.
 - Update `docs/hardware_checklist.md` with confirmed pin mappings.
 - Run the first peripheral test only after confirming the correct pins.
 - Record each hardware test result in `LOG.md`.
+
+## 2026-07-07
+
+### Goal
+
+Document the initial team organization and prepare hardware documentation notes.
+
+### Work done
+
+- Updated TEAM.md with the initial division of work and collaboration rules.
+- Added docs/pin_mapping.md to track confirmed GPIO pin mappings.
+- Added docs/hardware_reading_notes.md to record notes from the supervisor-provided hardware documentation.
+- Updated the Week 1 plan to mark the team organization step as completed.
+
+### Observations
+
+- The repository now separates team organization, hardware reading notes, pin mapping, and hardware test results.
+- GPIO pin mappings are still not confirmed.
+- Peripheral tests are still pending.
+
+### Issues / open questions
+
+- The supervisor-provided hardware documentation still needs to be reviewed.
+- GPIO pins for the photoresistor, buzzer, RGB LED, and serial LED strip must be confirmed before running the test scripts.
+- The repository still needs to be shared with GitHub user `matusformanek` if this has not been done manually yet.
+
+### Next steps
+
+- Share the repository with `matusformanek`.
+- Read the hardware documentation.
+- Fill docs/pin_mapping.md with confirmed pin mappings.
+- Update firmware test scripts only after pin confirmation.
+- Test each peripheral one by one and record results in LOG.md.

@@ -3,7 +3,7 @@
 - [x] Create GitHub repository
 - [x] Prepare initial repository structure
 - [ ] Share repository with `matusformanek`
-- [ ] Agree on team organization
+- [x] Agree on team organization
 - [x] Create `TEAM.md`
 - [x] Create `LOG.md`
 - [x] Confirm board detection by Windows on COM3
