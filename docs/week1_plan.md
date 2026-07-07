@@ -2,7 +2,7 @@
 
 - [x] Create GitHub repository
 - [x] Prepare initial repository structure
-- [ ] Share repository with `matusformanek`
+- [x] Share repository with `matusformanek`
 - [x] Agree on team organization
 - [x] Create `TEAM.md`
 - [x] Create `LOG.md`

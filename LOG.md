@@ -108,3 +108,35 @@ Document the initial team organization and prepare hardware documentation notes.
 - Fill docs/pin_mapping.md with confirmed pin mappings.
 - Update firmware test scripts only after pin confirmation.
 - Test each peripheral one by one and record results in LOG.md.
+
+## 2026-07-07
+
+### Goal
+
+Share the GitHub repository with the supervisor and keep the Week 1 documentation up to date.
+
+### Work done
+
+- Shared the GitHub repository with the supervisor GitHub user `matusformanek`.
+- Updated the Week 1 plan to reflect that the repository sharing step is completed.
+
+### Observations
+
+- The repository is now available for supervisor review.
+- The repository contains the initial Week 1 structure, team organization, lab notebook, hardware checklist, pin mapping notes, and hardware reading notes.
+- The project is still in the Week 1 hardware bring-up preparation phase.
+
+### Issues / open questions
+
+- The supervisor-provided hardware documentation still needs to be reviewed.
+- GPIO pin mappings are still not confirmed.
+- Peripheral tests are still pending.
+- The photoresistor, buzzer, RGB LED, and serial LED strip must not be tested until their pins are confirmed.
+
+### Next steps
+
+- Read the supervisor-provided hardware documentation.
+- Fill `docs/pin_mapping.md` with confirmed pin mappings.
+- Update firmware test scripts only after pin confirmation.
+- Test each peripheral one by one.
+- Record each hardware test result in `LOG.md`.
