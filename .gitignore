@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.DS_Store
+logs/
+*.log
+.idea/
+.vscode/
+
+Assignment1_Embedded_LLM_IoT.docx
