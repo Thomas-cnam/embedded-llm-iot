@@ -10,7 +10,7 @@
 - [x] Confirm MicroPython REPL access
 - [ ] Read hardware documentation
 - [ ] Identify pin mappings
-- [ ] Install or prepare MicroPython development environment
+- [x] Install or prepare MicroPython development environment (`mpremote` verified)
 - [ ] Test photoresistor
 - [ ] Test buzzer
 - [ ] Test RGB LED

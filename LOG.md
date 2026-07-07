@@ -55,10 +55,12 @@ Verify USB serial connection and MicroPython REPL access on the ESP32-C6 board.
 ### Observations
 
 - The board is correctly detected by Windows on COM3.
-- `mpremote` successfully connects to the board.
-- The MicroPython REPL is accessible.
-- The command `print("Hello ESP32-C6")` returned `Hello ESP32-C6`.
+- Windows identifies the USB serial bridge as Silicon Labs CP210x USB to UART Bridge.
+- `mpremote` successfully lists and connects to the board on COM3.
+- The MicroPython REPL is accessible through `py -m mpremote connect COM3 repl`.
+- The command `print("Hello ESP32-C6")` returned the expected output: `Hello ESP32-C6`.
 - Basic USB serial communication is confirmed.
+- Peripheral tests are still pending until GPIO pin mappings are confirmed from official hardware documentation.
 
 ### Issues / open questions
 
