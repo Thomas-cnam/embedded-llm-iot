@@ -6,7 +6,7 @@ Use this checklist during manual hardware bring-up. Do not mark an item as compl
 |---|---|---|---|---|
 | Board USB connection | Confirmed | COM3 | N/A | Detected as Silicon Labs CP210x USB to UART Bridge |
 | MicroPython REPL access | Confirmed | COM3 | N/A | `print("Hello ESP32-C6")` worked through mpremote |
-| Photoresistor ADC reading | Pending test | GPIO 3 | `firmware/tests/test_photoresistor.py` | Pin identified from PCB label PHOTO(3); functional test not run yet |
+| Photoresistor ADC reading | Tested / Inconclusive | GPIO 3 | `firmware/tests/test_photoresistor.py` | Exposed average: 6068.2; covered average: 6060.2; difference: 8.0. Readings changed only slightly, so response to light change was not clear. |
 | Buzzer PWM output | Pending test | GPIO 5 | `firmware/tests/test_buzzer.py` | Pin identified from PCB label BUZZER(5); functional test not run yet |
 | RGB LED control | Pending test | GPIO 10 / GPIO 11 / GPIO 21 | `firmware/tests/test_rgb_led.py` | Pins identified from PCB labels R(10), G(11), B(21); active high/low still to test |
 | Serial LED strip control | Pending test | GPIO 8 | `firmware/tests/test_serial_led_strip.py` | Pin identified from PCB label SERIAL_LED(8); 3 onboard LEDs visible; protocol still to test |

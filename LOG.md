@@ -178,3 +178,36 @@ Identify Week 1 peripheral pin mappings from the ESP32-C6 PCB silkscreen.
 - Test the photoresistor first.
 - Then test RGB LED, buzzer, and serial LED one by one.
 - Record each test result in `LOG.md`.
+
+## 2026-07-07
+
+### Goal
+
+Test the onboard photoresistor using MicroPython ADC.
+
+### Work done
+
+- Updated `firmware/tests/test_photoresistor.py` to use GPIO 3 based on PCB label `PHOTO(3)`.
+- Ran the photoresistor test on the ESP32-C6 through `mpremote`.
+- Collected readings with the photoresistor exposed to room light.
+- Collected readings with the photoresistor covered.
+
+### Observations
+
+- Exposed readings: 6065, 6081, 6081, 6049, 6081, 6081, 6049, 6065, 6065, 6065.
+- Covered readings: 6065, 6081, 6081, 6049, 6049, 6097, 6049, 6065, 6033, 6033.
+- Average exposed reading: 6068.2.
+- Average covered reading: 6060.2.
+- Absolute difference: 8.0.
+- The photoresistor did not show a clear response to the covered versus exposed condition during this run, so the test is documented as inconclusive.
+
+### Issues / open questions
+
+- The ADC readings changed only slightly between exposed and covered conditions.
+- It may be necessary to repeat the test with stronger light contrast or verify the photoresistor circuit behavior.
+
+### Next steps
+
+- Repeat or investigate the photoresistor ADC test before marking it as working.
+- Test the RGB LED, buzzer, and serial LED strip one by one.
+- Record each result in `LOG.md`.
