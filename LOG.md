@@ -37,3 +37,39 @@ Review the internship assignment and prepare the initial repository structure fo
 - Test the ESP32-C6 peripherals with MicroPython.
 - Record all hardware test results in this lab notebook.
 
+
+## 2026-07-07
+
+### Goal
+
+Verify USB serial connection and MicroPython REPL access on the ESP32-C6 board.
+
+### Work done
+
+- Connected the ESP32-C6 board to the laptop using USB.
+- Detected the board on COM3 as a Silicon Labs CP210x USB to UART Bridge.
+- Confirmed that `mpremote` can list the board using `py -m mpremote connect list`.
+- Opened the MicroPython REPL using `py -m mpremote connect COM3 repl`.
+- Executed `print("Hello ESP32-C6")` in the MicroPython REPL.
+
+### Observations
+
+- The board is correctly detected by Windows on COM3.
+- `mpremote` successfully connects to the board.
+- The MicroPython REPL is accessible.
+- The command `print("Hello ESP32-C6")` returned `Hello ESP32-C6`.
+- Basic USB serial communication is confirmed.
+
+### Issues / open questions
+
+- GPIO pin mappings are still not confirmed.
+- Peripheral tests should not be executed until the official hardware documentation and pin mapping are checked.
+- The photoresistor, buzzer, RGB LED, and serial LED strip have not been validated yet.
+
+### Next steps
+
+- Read the provided hardware documentation.
+- Identify GPIO pins for the photoresistor, buzzer, RGB LED, and serial LED strip.
+- Update `docs/hardware_checklist.md` with confirmed pin mappings.
+- Run the first peripheral test only after confirming the correct pins.
+- Record each hardware test result in `LOG.md`.
