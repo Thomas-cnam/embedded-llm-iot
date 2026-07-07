@@ -140,3 +140,41 @@ Share the GitHub repository with the supervisor and keep the Week 1 documentatio
 - Update firmware test scripts only after pin confirmation.
 - Test each peripheral one by one.
 - Record each hardware test result in `LOG.md`.
+
+## 2026-07-07
+
+### Goal
+
+Identify Week 1 peripheral pin mappings from the ESP32-C6 PCB silkscreen.
+
+### Work done
+
+- Visually inspected the ESP32-C6 custom PCB.
+- Identified the main Week 1 peripheral pins from the printed PCB labels.
+- Updated `docs/pin_mapping.md` with confirmed pin mappings.
+- Updated `docs/hardware_reading_notes.md` with PCB silkscreen inspection notes.
+- Updated `docs/hardware_checklist.md` with confirmed pins and pending test status.
+- Updated the Week 1 plan to mark pin mapping identification as completed.
+
+### Observations
+
+- Photoresistor is labeled `PHOTO(3)`.
+- Passive buzzer is labeled `BUZZER(5)`.
+- RGB LED channels are labeled `R(10)`, `G(11)`, and `B(21)`.
+- Serial LED is labeled `SERIAL_LED(8)`.
+- The serial LED area contains 3 visible onboard LEDs.
+- HC-SR04 labels are `TR(15)` and `EC(23)`.
+- I2C labels are `SDA(6)` and `SCL(7)`.
+
+### Issues / open questions
+
+- RGB LED active high or active low behavior still needs to be tested.
+- Serial LED protocol still needs to be confirmed by test.
+- No peripheral test has been run yet.
+
+### Next steps
+
+- Update firmware test scripts with the confirmed pins.
+- Test the photoresistor first.
+- Then test RGB LED, buzzer, and serial LED one by one.
+- Record each test result in `LOG.md`.

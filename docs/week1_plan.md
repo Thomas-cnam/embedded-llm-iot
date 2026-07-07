@@ -9,7 +9,7 @@
 - [x] Confirm board detection by Windows on COM3
 - [x] Confirm MicroPython REPL access
 - [ ] Read hardware documentation
-- [ ] Identify pin mappings
+- [x] Identify pin mappings - Main peripheral pins identified from PCB silkscreen labels; functional tests still pending.
 - [x] Install or prepare MicroPython development environment (`mpremote` verified)
 - [ ] Test photoresistor
 - [ ] Test buzzer

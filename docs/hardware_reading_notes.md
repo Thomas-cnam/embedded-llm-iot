@@ -52,4 +52,25 @@ The supervisor-provided material should be used to confirm pin mappings and peri
 
 ## Notes
 
-No GPIO pin mapping has been confirmed yet.
+GPIO pin mappings from supervisor-provided documents are not confirmed yet. PCB silkscreen labels have been recorded below.
+
+## PCB silkscreen inspection
+
+The ESP32-C6 custom PCB was visually inspected, and the labels printed on the PCB were used to identify the main Week 1 peripheral pins.
+
+Observed PCB labels:
+
+- Photoresistor: PHOTO(3)
+- Passive buzzer: BUZZER(5)
+- RGB LED: R(10), G(11), B(21)
+- Serial LED: SERIAL_LED(8)
+- Button: BUTTON(2)
+- HC-SR04: TR(15), EC(23)
+- I2C: SDA(6), SCL(7)
+
+Additional observations:
+
+- The serial LED area contains 3 visible onboard LEDs.
+- RGB active high/low behavior still needs to be verified by test.
+- Serial LED protocol still needs to be verified by test.
+- No peripheral test has been run yet.
