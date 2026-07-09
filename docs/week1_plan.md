@@ -11,7 +11,7 @@
 - [ ] Read hardware documentation
 - [x] Identify pin mappings - Main peripheral pins identified from PCB silkscreen labels; functional tests still pending.
 - [x] Install or prepare MicroPython development environment (`mpremote` verified)
-- [ ] Test photoresistor
+- [x] Test photoresistor
 - [ ] Test buzzer
 - [ ] Test RGB LED
 - [ ] Test serial LED strip
@@ -19,4 +19,4 @@
 
 ## Notes
 
-- Photoresistor test repeated in Thonny, but result remains inconclusive.
+- Photoresistor test repeated in Thonny with better sensor coverage; result is now validated as working.

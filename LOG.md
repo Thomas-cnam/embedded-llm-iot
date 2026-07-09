@@ -250,3 +250,34 @@ Repeat the onboard photoresistor ADC test using Thonny.
 - Continue Week 1 hardware bring-up with the other peripherals.
 - Test RGB LED, buzzer, and serial LED strip one by one.
 - Ask the supervisor for confirmation if the photoresistor continues to show no clear response.
+
+## 2026-07-07
+
+### Goal
+
+Validate the onboard photoresistor ADC test after repeating it with better sensor coverage.
+
+### Work done
+
+- Reran `firmware/tests/test_photoresistor.py` in Thonny.
+- Used GPIO 3 based on PCB label `PHOTO(3)`.
+- Collected readings with the photoresistor exposed to room light.
+- Collected readings with the photoresistor properly covered.
+
+### Observations
+
+- Exposed average reading: 28041.2
+- Covered average reading: 1225.6
+- Absolute difference: 26815.6
+- The readings changed clearly when the photoresistor was covered.
+- The photoresistor responds correctly to light changes.
+
+### Issues / open questions
+
+- The previous inconclusive result was likely caused by insufficient sensor coverage or incorrect manual handling.
+- No issue observed during this successful repeat test.
+
+### Next steps
+
+- Continue Week 1 hardware bring-up with RGB LED, buzzer, and serial LED strip tests one by one.
+- Record each hardware test result in `LOG.md`.
