@@ -12,7 +12,7 @@
 - [x] Identify pin mappings - Main peripheral pins identified from PCB silkscreen labels; functional tests still pending.
 - [x] Install or prepare MicroPython development environment (`mpremote` verified)
 - [x] Test photoresistor
-- [ ] Test buzzer
+- [x] Test buzzer
 - [ ] Test RGB LED
 - [ ] Test serial LED strip
 - [ ] Record all results in `LOG.md`

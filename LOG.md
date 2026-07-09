@@ -308,3 +308,32 @@ Prepare the passive buzzer PWM test script for manual execution.
 - Run `firmware/tests/test_buzzer.py` manually in Thonny on the ESP32-C6 board.
 - Confirm whether the buzzer produces the expected short tones.
 - Record the buzzer test result in `LOG.md`.
+
+## 2026-07-07
+
+### Goal
+
+Test the onboard passive buzzer using MicroPython PWM.
+
+### Work done
+
+- Opened `firmware/tests/test_buzzer.py` in Thonny.
+- Ran the script on the ESP32-C6 board.
+- Used GPIO 5 based on PCB label `BUZZER(5)`.
+- Played three short tones at 440 Hz, 660 Hz, and 880 Hz.
+- Confirmed that PWM stopped at the end of the script.
+
+### Observations
+
+- The buzzer produced the expected short tones.
+- The script completed without errors.
+- PWM was stopped at the end.
+
+### Issues / open questions
+
+- No issue observed during this test.
+
+### Next steps
+
+- Continue Week 1 hardware bring-up with RGB LED and serial LED strip tests.
+- Record each hardware test result in `LOG.md`.
