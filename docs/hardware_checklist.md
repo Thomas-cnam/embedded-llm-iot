@@ -7,7 +7,7 @@ Use this checklist during manual hardware bring-up. Do not mark an item as compl
 | Board USB connection | Confirmed | COM3 | N/A | Detected as Silicon Labs CP210x USB to UART Bridge |
 | MicroPython REPL access | Confirmed | COM3 | N/A | `print("Hello ESP32-C6")` worked through mpremote |
 | Photoresistor ADC reading | Tested / Working | GPIO 3 | `firmware/tests/test_photoresistor.py` | Successful Thonny repeat test: exposed average 28041.2; covered average 1225.6; difference 26815.6. Clear response to light changes observed. |
-| Buzzer PWM output | Pending test | GPIO 5 | `firmware/tests/test_buzzer.py` | Pin identified from PCB label BUZZER(5); functional test not run yet |
+| Buzzer PWM output | Pending test | GPIO 5 | `firmware/tests/test_buzzer.py` | Pin identified from PCB label BUZZER(5); local finite PWM test script prepared for manual Thonny execution; functional test not run yet |
 | RGB LED control | Pending test | GPIO 10 / GPIO 11 / GPIO 21 | `firmware/tests/test_rgb_led.py` | Pins identified from PCB labels R(10), G(11), B(21); active high/low still to test |
 | Serial LED strip control | Pending test | GPIO 8 | `firmware/tests/test_serial_led_strip.py` | Pin identified from PCB label SERIAL_LED(8); 3 onboard LEDs visible; protocol still to test |
 | HC-SR04 ultrasonic sensor | Optional / not tested | GPIO 15 trigger / GPIO 23 echo | TODO | Pins identified from PCB labels TR(15), EC(23); optional sensor not tested yet |

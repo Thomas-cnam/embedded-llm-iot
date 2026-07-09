@@ -281,3 +281,30 @@ Validate the onboard photoresistor ADC test after repeating it with better senso
 
 - Continue Week 1 hardware bring-up with RGB LED, buzzer, and serial LED strip tests one by one.
 - Record each hardware test result in `LOG.md`.
+
+## 2026-07-07
+
+### Goal
+
+Prepare the passive buzzer PWM test script for manual execution.
+
+### Work done
+
+- Updated `firmware/tests/test_buzzer.py` to use GPIO 5 based on PCB label `BUZZER(5)`.
+- Prepared a finite MicroPython PWM test with short tones at 440 Hz, 660 Hz, and 880 Hz.
+- Added PWM cleanup so duty is set to 0 and PWM is deinitialized at the end.
+
+### Observations
+
+- The buzzer test script is ready for manual execution in Thonny.
+- The buzzer has not been tested yet.
+
+### Issues / open questions
+
+- No buzzer result is available yet because the script was only prepared, not executed.
+
+### Next steps
+
+- Run `firmware/tests/test_buzzer.py` manually in Thonny on the ESP32-C6 board.
+- Confirm whether the buzzer produces the expected short tones.
+- Record the buzzer test result in `LOG.md`.
