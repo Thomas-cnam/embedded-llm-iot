@@ -1,36 +1,58 @@
 """
-Basic MicroPython serial LED strip test template.
+ESP32-C6 serial LED strip test.
 
-TODO: Replace TODO_PIN and TODO_LED_COUNT with values confirmed from the
-official board documentation before running this script on hardware.
+PCB label:
+- SERIAL_LED(8)
+
+The PCB visibly has 3 onboard serial LEDs.
+
+This test is finite:
+- red
+- green
+- blue
+- white
+- off
 """
 
-from machine import Pin
 from time import sleep
-import neopixel
+from machine import Pin
+
+try:
+    import neopixel
+except ImportError:
+    print("ERROR: neopixel module is not available in this MicroPython firmware.")
+    raise
 
 
-TODO_PIN = None
-TODO_LED_COUNT = None
+PIN_SERIAL_LED = 8
+LED_COUNT = 3
 
 
-if TODO_PIN is None or TODO_LED_COUNT is None:
-    raise ValueError("Set TODO_PIN and TODO_LED_COUNT before running this test.")
+pixels = neopixel.NeoPixel(Pin(PIN_SERIAL_LED, Pin.OUT), LED_COUNT)
 
 
-strip = neopixel.NeoPixel(Pin(TODO_PIN), TODO_LED_COUNT)
+def set_all(color):
+    for index in range(LED_COUNT):
+        pixels[index] = color
+    pixels.write()
 
-colors = [
-    (32, 0, 0),
-    (0, 32, 0),
-    (0, 0, 32),
-    (0, 0, 0),
-]
 
-while True:
-    for color in colors:
-        for index in range(TODO_LED_COUNT):
-            strip[index] = color
-        strip.write()
-        sleep(1)
+def show_color(name, color, duration=1.5):
+    print("Testing serial LEDs:", name)
+    set_all(color)
+    sleep(duration)
 
+
+print("ESP32-C6 serial LED strip test")
+print("Using GPIO 8 from PCB label SERIAL_LED(8).")
+print("LED_COUNT =", LED_COUNT)
+
+try:
+    show_color("red", (255, 0, 0))
+    show_color("green", (0, 255, 0))
+    show_color("blue", (0, 0, 255))
+    show_color("white", (255, 255, 255))
+finally:
+    print("Turning serial LEDs off.")
+    set_all((0, 0, 0))
+    print("Serial LED test finished.")

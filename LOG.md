@@ -369,3 +369,35 @@ Test the onboard RGB LED using MicroPython GPIO output.
 
 - Continue Week 1 hardware bring-up with the serial LED strip test.
 - Record each hardware test result in `LOG.md`.
+
+## 2026-07-07
+
+### Goal
+
+Document successful Week 1 hardware peripheral tests.
+
+### Work done
+
+- Confirmed the passive buzzer test on GPIO 5.
+- Confirmed the RGB LED test using GPIO 10, GPIO 11, and GPIO 21.
+- Confirmed the serial LED strip test using GPIO 8 and 3 onboard LEDs.
+- Verified that each test script completed without errors.
+- Updated the hardware checklist and Week 1 plan.
+
+### Observations
+
+- The passive buzzer produced the expected short tones at 440 Hz, 660 Hz, and 880 Hz.
+- The RGB LED displayed red, green, blue, white, and turned off correctly.
+- The serial LED strip displayed red, green, blue, white, and turned off correctly.
+- The serial LED test used LED_COUNT = 3.
+- No error occurred during these tests.
+
+### Issues / open questions
+
+- No issue observed during the buzzer, RGB LED, or serial LED tests.
+- The photoresistor was successfully validated after repeating the test with better sensor coverage.
+
+### Next steps
+
+- Keep the Week 1 hardware bring-up results documented.
+- Prepare for the next project phase only after Week 1 documentation is reviewed.

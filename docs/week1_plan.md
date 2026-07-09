@@ -14,8 +14,8 @@
 - [x] Test photoresistor
 - [x] Test buzzer
 - [x] Test RGB LED
-- [ ] Test serial LED strip
-- [ ] Record all results in `LOG.md`
+- [x] Test serial LED strip
+- [x] Record all results in `LOG.md`
 
 ## Notes
 
