@@ -337,3 +337,35 @@ Test the onboard passive buzzer using MicroPython PWM.
 
 - Continue Week 1 hardware bring-up with RGB LED and serial LED strip tests.
 - Record each hardware test result in `LOG.md`.
+
+## 2026-07-07
+
+### Goal
+
+Test the onboard RGB LED using MicroPython GPIO output.
+
+### Work done
+
+- Opened `firmware/tests/test_rgb_led.py` in Thonny.
+- Ran the script on the ESP32-C6 board.
+- Used GPIO 10, GPIO 11, and GPIO 21 based on PCB labels `R(10)`, `G(11)`, and `B(21)`.
+- Tested red, green, blue, white, and off states.
+
+### Observations
+
+- The RGB LED displayed red correctly.
+- The RGB LED displayed green correctly.
+- The RGB LED displayed blue correctly.
+- The RGB LED displayed white correctly.
+- The RGB LED turned off correctly at the end.
+- The script completed without errors.
+- `ACTIVE_LOW = False` worked correctly.
+
+### Issues / open questions
+
+- No issue observed during this test.
+
+### Next steps
+
+- Continue Week 1 hardware bring-up with the serial LED strip test.
+- Record each hardware test result in `LOG.md`.

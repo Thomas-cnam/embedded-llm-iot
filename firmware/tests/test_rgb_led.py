@@ -1,44 +1,73 @@
 """
-Basic MicroPython RGB LED test template.
+ESP32-C6 RGB LED test.
 
-TODO: Replace TODO_PIN_RED, TODO_PIN_GREEN, and TODO_PIN_BLUE with the
-confirmed GPIO pins from the official board documentation before running this
-script on hardware.
+PCB labels:
+- Red   = R(10)
+- Green = G(11)
+- Blue  = B(21)
+
+This test is finite:
+- red
+- green
+- blue
+- white
+- off
+
+If the LED behaves inverted, change ACTIVE_LOW to True.
 """
 
 from machine import Pin
 from time import sleep
 
 
-TODO_PIN_RED = None
-TODO_PIN_GREEN = None
-TODO_PIN_BLUE = None
+PIN_RED = 10
+PIN_GREEN = 11
+PIN_BLUE = 21
+
+# Start with False.
+# If the LED stays on when it should be off, or colors behave inverted,
+# set this to True and run the test again.
+ACTIVE_LOW = False
 
 
-if None in (TODO_PIN_RED, TODO_PIN_GREEN, TODO_PIN_BLUE):
-    raise ValueError("Set all RGB LED TODO pins to confirmed GPIO pins.")
+red = Pin(PIN_RED, Pin.OUT)
+green = Pin(PIN_GREEN, Pin.OUT)
+blue = Pin(PIN_BLUE, Pin.OUT)
 
 
-red = Pin(TODO_PIN_RED, Pin.OUT)
-green = Pin(TODO_PIN_GREEN, Pin.OUT)
-blue = Pin(TODO_PIN_BLUE, Pin.OUT)
+def output_value(is_on):
+    if ACTIVE_LOW:
+        return 0 if is_on else 1
+    return 1 if is_on else 0
 
 
-def set_rgb(r, g, b):
-    red.value(r)
-    green.value(g)
-    blue.value(b)
+def set_rgb(red_on, green_on, blue_on):
+    red.value(output_value(red_on))
+    green.value(output_value(green_on))
+    blue.value(output_value(blue_on))
 
 
-colors = [
-    (1, 0, 0),
-    (0, 1, 0),
-    (0, 0, 1),
-    (0, 0, 0),
-]
+def show_color(name, red_on, green_on, blue_on, duration=1.5):
+    print("Testing color:", name)
+    set_rgb(red_on, green_on, blue_on)
+    sleep(duration)
 
-while True:
-    for color in colors:
-        set_rgb(*color)
-        sleep(1)
 
+print("ESP32-C6 RGB LED test")
+print("Using PCB labels: R(10), G(11), B(21)")
+print("ACTIVE_LOW =", ACTIVE_LOW)
+
+try:
+    print("Turning RGB LED off before test...")
+    set_rgb(False, False, False)
+    sleep(1)
+
+    show_color("red", True, False, False)
+    show_color("green", False, True, False)
+    show_color("blue", False, False, True)
+    show_color("white", True, True, True)
+
+finally:
+    print("Turning RGB LED off.")
+    set_rgb(False, False, False)
+    print("RGB LED test finished.")

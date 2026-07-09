@@ -13,7 +13,7 @@
 - [x] Install or prepare MicroPython development environment (`mpremote` verified)
 - [x] Test photoresistor
 - [x] Test buzzer
-- [ ] Test RGB LED
+- [x] Test RGB LED
 - [ ] Test serial LED strip
 - [ ] Record all results in `LOG.md`
 
