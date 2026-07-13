@@ -593,3 +593,38 @@ Prepare a repeatable photoresistor baseline measurement experiment.
 
 - Run `firmware/tests/measure_photoresistor_baseline.py` manually in Thonny.
 - Save the captured CSV-compatible readings without changing the raw values.
+
+## 2026-07-13
+
+### Goal
+
+Collect and document repeatable photoresistor baseline measurements.
+
+### Work done
+
+- Ran `firmware/tests/measure_photoresistor_baseline.py` manually in Thonny on the ESP32-C6 board.
+- Collected 30 readings with the photoresistor covered.
+- Collected 30 readings in ambient room light.
+- Collected 30 readings with a phone flashlight directed at the sensor.
+- Saved all 90 raw readings unchanged in `experiments/raw_data/photoresistor_baseline_2026-07-13.csv`.
+- Updated the baseline procedure and Week 2 documentation with descriptive results.
+
+### Observations
+
+- Covered: minimum 16, maximum 80, average 47.5.
+- Ambient room light: minimum 24293, maximum 24437, average 24368.7.
+- Phone flashlight: minimum 36889, maximum 42010, average 39545.9.
+- Absolute average difference between covered and ambient room light: 24321.3.
+- Absolute average difference between covered and phone flashlight: 39498.4.
+- Absolute average difference between ambient room light and phone flashlight: 15177.2.
+- The finite sequence completed without errors.
+
+### Issues / open questions
+
+- No execution issue was observed during data collection.
+- No anomaly threshold or detector was defined from these measurements.
+
+### Next steps
+
+- Review the completed Week 2 hardware consolidation records.
+- Keep anomaly detection work out of scope until the planned project phase.

@@ -32,13 +32,33 @@ the pairwise absolute differences between condition averages.
 
 ## Data handling
 
-All readings remain in memory while the script runs. The script does not write
-to the ESP32 filesystem. Raw results will be added to
-`experiments/raw_data/` only after the manual test is completed.
+All readings remained in memory while the script ran. The script did not write
+to the ESP32 filesystem. The manually captured raw output is stored in
+`experiments/raw_data/photoresistor_baseline_2026-07-13.csv`.
 
 The CSV template uses the columns `condition`, `reading_index`, and `value`.
 The script labels the same numeric reading position as `index` in its console
 output.
+
+## Results from 2026-07-13
+
+The experiment completed manually in Thonny with 30 readings for each
+condition and no execution error.
+
+| Condition | Minimum | Maximum | Average |
+|---|---:|---:|---:|
+| Covered | 16 | 80 | 47.5 |
+| Ambient room light | 24293 | 24437 | 24368.7 |
+| Phone flashlight | 36889 | 42010 | 39545.9 |
+
+Pairwise absolute differences between the averages:
+
+- Covered and ambient room light: 24321.3
+- Covered and phone flashlight: 39498.4
+- Ambient room light and phone flashlight: 15177.2
+
+These values describe only the measurements collected during this experiment.
+No anomaly conclusion or threshold is defined from them during Week 2.
 
 ## Project boundary
 

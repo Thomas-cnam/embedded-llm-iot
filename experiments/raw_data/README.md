@@ -8,5 +8,6 @@ transfer only its CSV-compatible measurement lines into a new CSV data file.
 Keep the original readings unchanged. Do not add calculated thresholds or
 anomaly labels during Week 2.
 
-The baseline measurement has been prepared but has not yet been run. The CSV
-template is intentionally empty apart from its header.
+The baseline measurement was run manually in Thonny on 2026-07-13. The 90 raw
+readings are stored unchanged in `photoresistor_baseline_2026-07-13.csv`. The
+template remains available for future repeated measurements.

@@ -11,9 +11,9 @@ Consolidate the ESP32-C6 hardware bring-up and prepare a clean, reusable firmwar
 - [x] Create reusable peripheral modules
 - [x] Create a combined hardware smoke test
 - [x] Run and document the combined hardware smoke test
-- [ ] Collect photoresistor baseline measurements
-- [ ] Save baseline measurements in the experiments folder
-- [ ] Update LOG.md and hardware documentation
+- [x] Collect photoresistor baseline measurements
+- [x] Save baseline measurements in the experiments folder
+- [x] Update LOG.md and hardware documentation
 - [ ] Complete Week 2 hardware consolidation
 
 ## Out of scope
@@ -25,8 +25,9 @@ Consolidate the ESP32-C6 hardware bring-up and prepare a clean, reusable firmwar
 - Whitelist parser
 - LLM benchmarking
 
-## Current preparation
+## Baseline status
 
-The repeatable photoresistor baseline measurement script, procedure, and empty
-CSV template are prepared. Baseline collection and raw-data storage remain
-pending until the script is run manually in Thonny.
+The repeatable photoresistor baseline experiment was run manually in Thonny on
+2026-07-13. All 90 raw readings are saved in the experiments folder and the
+descriptive results are documented. Week 2 completion remains pending final
+review.
