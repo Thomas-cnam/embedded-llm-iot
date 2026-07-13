@@ -561,3 +561,35 @@ Run and validate the combined ESP32-C6 peripheral smoke test in Thonny.
 
 - Collect and save the planned photoresistor baseline measurements.
 - Continue the remaining Week 2 hardware consolidation documentation.
+
+## 2026-07-13
+
+### Goal
+
+Prepare a repeatable photoresistor baseline measurement experiment.
+
+### Work done
+
+- Created `firmware/tests/measure_photoresistor_baseline.py` for GPIO 3.
+- Prepared three measurement conditions: covered, ambient room light, and phone flashlight.
+- Configured the finite experiment to collect 30 readings per condition after a five-second setup delay.
+- Added CSV-compatible console output and in-memory summary calculations.
+- Created the raw-data folder, an empty CSV template, and the experiment procedure documentation.
+
+### Observations
+
+- The script prefers `read_u16()` and falls back to `read()`.
+- ADC attenuation is attempted safely.
+- The script does not write to the ESP32 filesystem.
+- The baseline script was prepared but was not run during this task.
+- No baseline results, anomaly conclusion, or threshold were produced.
+
+### Issues / open questions
+
+- The three lighting conditions still need to be measured manually in Thonny.
+- Raw measurement output still needs to be transferred to the experiments folder after testing.
+
+### Next steps
+
+- Run `firmware/tests/measure_photoresistor_baseline.py` manually in Thonny.
+- Save the captured CSV-compatible readings without changing the raw values.

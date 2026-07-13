@@ -24,3 +24,9 @@ Consolidate the ESP32-C6 hardware bring-up and prepare a clean, reusable firmwar
 - Prompt engineering
 - Whitelist parser
 - LLM benchmarking
+
+## Current preparation
+
+The repeatable photoresistor baseline measurement script, procedure, and empty
+CSV template are prepared. Baseline collection and raw-data storage remain
+pending until the script is run manually in Thonny.
