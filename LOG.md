@@ -433,3 +433,34 @@ Start Week 2 hardware consolidation planning and audit the existing peripheral t
 - Clean and standardize the peripheral test scripts only where useful.
 - Create reusable peripheral modules while preserving the known-working behavior.
 - Prepare a combined hardware smoke test after reusable modules exist.
+
+## 2026-07-13
+
+### Goal
+
+Clean and standardize the existing Week 1 peripheral test scripts for Week 2 consolidation.
+
+### Work done
+
+- Standardized the photoresistor, buzzer, RGB LED, and serial LED test scripts.
+- Preserved all confirmed GPIO mappings and known-working test sequences.
+- Kept each script finite and suitable for manual execution.
+- Updated `docs/week2_audit.md` with the final cleaned script status.
+- Updated `docs/week2_plan.md` to mark script cleaning and standardization as completed.
+
+### Observations
+
+- No hardware scripts were run during this task.
+- The cleaned scripts still target the confirmed ESP32-C6 PCB pins.
+- Output cleanup remains implemented for buzzer, RGB LED, and serial LEDs.
+- Anomaly detection, gateway communication, and local LLM integration remain out of scope.
+
+### Issues / open questions
+
+- Reusable peripheral modules still need to be created in a later Week 2 step.
+- A combined hardware smoke test still needs to be created after the modules exist.
+
+### Next steps
+
+- Create reusable peripheral modules for the confirmed hardware components.
+- Keep the cleaned scripts as reference manual diagnostics.

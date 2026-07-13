@@ -7,7 +7,7 @@ Consolidate the ESP32-C6 hardware bring-up and prepare a clean, reusable firmwar
 ## Checklist
 
 - [x] Audit existing peripheral test scripts
-- [ ] Clean and standardize peripheral test scripts
+- [x] Clean and standardize peripheral test scripts
 - [ ] Create reusable peripheral modules
 - [ ] Create a combined hardware smoke test
 - [ ] Run and document the combined hardware smoke test
