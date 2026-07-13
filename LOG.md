@@ -464,3 +464,34 @@ Clean and standardize the existing Week 1 peripheral test scripts for Week 2 con
 
 - Create reusable peripheral modules for the confirmed hardware components.
 - Keep the cleaned scripts as reference manual diagnostics.
+
+## 2026-07-13
+
+### Goal
+
+Create reusable MicroPython peripheral modules for Week 2 hardware consolidation.
+
+### Work done
+
+- Created `firmware/peripherals/` with reusable helper modules for the photoresistor, buzzer, RGB LED, and serial LEDs.
+- Preserved the confirmed GPIO mappings from Week 1 hardware bring-up.
+- Added `docs/peripheral_modules.md` to describe module purpose, pins, and usage examples.
+- Updated `firmware/README.md` with the current firmware structure.
+- Updated `docs/week2_plan.md` to mark reusable peripheral module creation as completed.
+
+### Observations
+
+- The new modules are MicroPython-compatible helper classes.
+- The existing self-contained test scripts remain the verified hardware reference.
+- No hardware script was run or uploaded during this task.
+- The reusable modules have not yet been independently validated on hardware.
+
+### Issues / open questions
+
+- The reusable modules still need hardware validation in a later Week 2 step.
+- A combined hardware smoke test still needs to be created after module validation planning.
+
+### Next steps
+
+- Create a combined hardware smoke test using the reusable modules.
+- Run and document that smoke test only when explicitly requested.
