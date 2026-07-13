@@ -10,5 +10,6 @@ Use this checklist during manual hardware bring-up. Do not mark an item as compl
 | Buzzer PWM output | Tested / Working | GPIO 5 | `firmware/tests/test_buzzer.py` | Short tones played at 440 Hz, 660 Hz, and 880 Hz; PWM stopped correctly; no error observed. |
 | RGB LED control | Tested / Working | GPIO 10 / GPIO 11 / GPIO 21 | `firmware/tests/test_rgb_led.py` | Red, green, blue, white, and off states worked; ACTIVE_LOW = False; no error observed. |
 | Serial LED strip control | Tested / Working | GPIO 8 | `firmware/tests/test_serial_led_strip.py` | 3 onboard LEDs tested; red, green, blue, white, and off states worked; LED_COUNT = 3; no error observed. |
+| Combined peripheral smoke test | Tested / Working | GPIO 3 / 5 / 8 / 10 / 11 / 21 | `firmware/tests/test_all_peripherals.py` | Manually run in Thonny; photoresistor readings completed; buzzer tones and all RGB and serial LED states were observed; safety cleanup completed; no error observed. |
 | HC-SR04 ultrasonic sensor | Optional / not tested | GPIO 15 trigger / GPIO 23 echo | TODO | Pins identified from PCB labels TR(15), EC(23); optional sensor not tested yet |
 | MPU6050 accelerometer/gyroscope | Optional / not tested | GPIO 6 SDA / GPIO 7 SCL | TODO | I2C pins identified from PCB labels SDA(6), SCL(7); optional sensor not tested yet |

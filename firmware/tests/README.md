@@ -17,5 +17,6 @@ tones, and tests the RGB LED and three serial LEDs in red, green, blue, white,
 and off states. It always attempts to stop PWM and turn all LEDs off before
 exiting.
 
-The combined smoke test has been prepared but has not yet been executed. Record
-the manual observations in `LOG.md` after running it in Thonny.
+The combined smoke test was run manually in Thonny on 2026-07-13. All tested
+peripherals completed their sequence successfully, all expected visual and
+audible outputs were observed, and the safety cleanup turned all outputs off.

@@ -526,3 +526,38 @@ Prepare a finite, self-contained combined hardware smoke test for manual Thonny 
 
 - Run `firmware/tests/test_all_peripherals.py` manually in Thonny.
 - Observe each peripheral and record the results in `LOG.md`.
+
+## 2026-07-13
+
+### Goal
+
+Run and validate the combined ESP32-C6 peripheral smoke test in Thonny.
+
+### Work done
+
+- Ran `firmware/tests/test_all_peripherals.py` manually on the ESP32-C6 board in Thonny.
+- Read five photoresistor ADC values on GPIO 3.
+- Played buzzer tones at 440 Hz, 660 Hz, and 880 Hz on GPIO 5.
+- Tested red, green, blue, white, and off states on the RGB LED.
+- Tested red, green, blue, white, and off states on the three serial LEDs.
+- Confirmed the visual and audible outputs manually.
+
+### Observations
+
+- Photoresistor readings: 4513, 4513, 4513, 4513, and 4497.
+- Average photoresistor reading: 4509.8.
+- The three buzzer tones were heard as expected.
+- The RGB LED displayed red, green, blue, and white, then turned off.
+- The serial LEDs displayed red, green, blue, and white, then turned off.
+- The complete sequence finished without errors.
+- Safety cleanup completed and all outputs were turned off.
+
+### Issues / open questions
+
+- No issue was observed during the combined smoke test.
+- Dedicated photoresistor baseline measurements still need to be collected separately.
+
+### Next steps
+
+- Collect and save the planned photoresistor baseline measurements.
+- Continue the remaining Week 2 hardware consolidation documentation.
