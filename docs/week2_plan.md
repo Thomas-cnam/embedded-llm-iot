@@ -9,7 +9,7 @@ Consolidate the ESP32-C6 hardware bring-up and prepare a clean, reusable firmwar
 - [x] Audit existing peripheral test scripts
 - [x] Clean and standardize peripheral test scripts
 - [x] Create reusable peripheral modules
-- [ ] Create a combined hardware smoke test
+- [x] Create a combined hardware smoke test
 - [ ] Run and document the combined hardware smoke test
 - [ ] Collect photoresistor baseline measurements
 - [ ] Save baseline measurements in the experiments folder

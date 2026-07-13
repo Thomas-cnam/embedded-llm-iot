@@ -495,3 +495,34 @@ Create reusable MicroPython peripheral modules for Week 2 hardware consolidation
 
 - Create a combined hardware smoke test using the reusable modules.
 - Run and document that smoke test only when explicitly requested.
+
+## 2026-07-13
+
+### Goal
+
+Prepare a finite, self-contained combined hardware smoke test for manual Thonny execution.
+
+### Work done
+
+- Created `firmware/tests/test_all_peripherals.py` using the confirmed ESP32-C6 GPIO mappings.
+- Added a finite sequence for the photoresistor, buzzer, RGB LED, and serial LEDs.
+- Added safety cleanup for PWM, the RGB LED, and the serial LEDs.
+- Updated `firmware/tests/README.md` with manual execution instructions.
+- Marked only creation of the combined hardware smoke test as completed in `docs/week2_plan.md`.
+
+### Observations
+
+- The smoke test is self-contained and does not require reusable peripheral modules on the board.
+- Only built-in MicroPython modules are used.
+- The script was prepared but was not executed or uploaded during this task.
+- No new hardware result is claimed.
+
+### Issues / open questions
+
+- The combined hardware smoke test still needs to be run manually in Thonny.
+- Its observed results must be documented after manual execution.
+
+### Next steps
+
+- Run `firmware/tests/test_all_peripherals.py` manually in Thonny.
+- Observe each peripheral and record the results in `LOG.md`.
