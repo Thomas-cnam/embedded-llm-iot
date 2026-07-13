@@ -401,3 +401,35 @@ Document successful Week 1 hardware peripheral tests.
 
 - Keep the Week 1 hardware bring-up results documented.
 - Prepare for the next project phase only after Week 1 documentation is reviewed.
+
+## 2026-07-13
+
+### Goal
+
+Start Week 2 hardware consolidation planning and audit the existing peripheral test scripts.
+
+### Work done
+
+- Created `docs/week2_plan.md` for Week 2 hardware consolidation.
+- Audited the existing peripheral test scripts without modifying their implementation.
+- Created `docs/week2_audit.md` with script-level findings and improvement notes.
+- Marked only the Week 2 audit checklist item as completed.
+
+### Observations
+
+- The Week 1 peripheral test scripts use the confirmed PCB pin mappings.
+- The scripts are finite and suitable for continued manual use.
+- Output cleanup is implemented for buzzer, RGB LED, and serial LEDs.
+- No new hardware test was executed during this audit.
+- Edge anomaly detection remains out of scope.
+
+### Issues / open questions
+
+- Reusable peripheral modules still need to be designed and created during Week 2.
+- A combined hardware smoke test still needs to be created and run later.
+
+### Next steps
+
+- Clean and standardize the peripheral test scripts only where useful.
+- Create reusable peripheral modules while preserving the known-working behavior.
+- Prepare a combined hardware smoke test after reusable modules exist.
