@@ -666,3 +666,44 @@ Review the baseline experiment records and close Week 2 hardware consolidation.
 - The main peripherals are verified in MicroPython.
 - Photoresistor baseline measurements are recorded and documented.
 - Week 3 implementation has not started.
+
+## 2026-07-15
+
+### Goal
+
+Create an adjustable roadmap and detailed plan for the remaining internship work through the August 29 deadline.
+
+### Work done
+
+- Created `docs/project_roadmap.md` with the current status, milestones, target architecture, dependencies, and safety buffer.
+- Created detailed pending checklists for Weeks 3 through 8.
+- Created `docs/experimental_metrics_plan.md` for detector, latency, model, structured-output, and safety measurements.
+- Created `docs/final_report_outline.md` for the English final report.
+- Created `docs/final_submission_checklist.md` for repository, report, presentation, demonstration, backup, and submission verification.
+- Added planning links and the remaining schedule to `README.md`.
+
+### Observations
+
+- The roadmap is a working plan and may be adjusted when technical evidence justifies a change.
+- Required pipeline work has priority over optional sensors, model comparisons, and additional features.
+- Required deliverables are planned for completion by August 25.
+- August 26–29 is reserved as a safety buffer for corrections and submission verification.
+- Week 1 and Week 2 remain completed; all future checklist items remain pending.
+
+### Issues / open questions
+
+- Runtime and local-model selection remain planned for Week 4.
+- Detector parameters and experimental acceptance criteria must be selected from future measured evidence, not assumed during planning.
+- Final university formatting and submission requirements must be confirmed with the supervisor.
+
+### Next steps
+
+- Review the roadmap with the supervisor and record any major adjustment in `LOG.md`.
+- Begin Week 3 one checklist item at a time without starting later-week optional work early.
+
+### Scope confirmation
+
+- No source code was modified.
+- No Week 3 implementation was started.
+- No runtime or model was installed.
+- No experiment was run and no result was invented.

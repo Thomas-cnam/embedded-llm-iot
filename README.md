@@ -21,7 +21,7 @@ Planned peripherals include:
 - Optional HC-SR04 ultrasonic sensor
 - Optional MPU6050 motion sensor
 
-GPIO pin mappings are not defined yet in this repository. They must be filled in only after checking the official board documentation.
+Confirmed GPIO mappings are documented in `docs/pin_mapping.md` and the hardware checklist.
 
 ## Planned Software Stack
 
@@ -47,7 +47,7 @@ embedded-llm-iot/
 
 ## Week 1 Status
 
-Week 1 focuses on repository preparation, documentation, team organization, and manual hardware bring-up planning. Hardware tests are not marked as completed until they are performed on the real ESP32-C6 board and recorded in `LOG.md`.
+Week 1 is completed. Repository setup, team documentation, MicroPython access, pin identification, and the main peripheral tests are recorded in `LOG.md` and the Week 1 documentation.
 
 ## Supervisor Sharing Note
 
@@ -61,3 +61,20 @@ The repository should be shared with GitHub user: `matusformanek`.
 - Photoresistor baseline measurements recorded
 - Next planned milestone: Week 3 edge anomaly detector
 - No anomaly detector implemented yet
+
+## Project Planning
+
+The remaining work is organized as an adjustable plan through the August 29, 2026 deadline:
+
+- [Project roadmap](docs/project_roadmap.md)
+- [Week 3: edge anomaly detector](docs/week3_plan.md)
+- [Week 4: Python gateway and first local LLM response](docs/week4_plan.md)
+- [Week 5: prompt engineering and safety parser](docs/week5_plan.md)
+- [Week 6: safe end-to-end integration](docs/week6_plan.md)
+- [Week 7: experimental benchmarking](docs/week7_plan.md)
+- [Week 8: report, cleanup, presentation, and submission](docs/week8_plan.md)
+- [Experimental metrics plan](docs/experimental_metrics_plan.md)
+- [Final report outline](docs/final_report_outline.md)
+- [Final submission checklist](docs/final_submission_checklist.md)
+
+Required deliverables are planned for completion by August 25. August 26–29 is reserved for corrections, verification, backups, and final submission rather than new required features.
