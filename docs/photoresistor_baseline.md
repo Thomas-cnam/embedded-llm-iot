@@ -34,7 +34,7 @@ the pairwise absolute differences between condition averages.
 
 All readings remained in memory while the script ran. The script did not write
 to the ESP32 filesystem. The manually captured raw output is stored in
-`experiments/raw_data/photoresistor_baseline_2026-07-13.csv`.
+`experiments/raw_data/photoresistor_baseline.csv`.
 
 The CSV template uses the columns `condition`, `reading_index`, and `value`.
 The script labels the same numeric reading position as `index` in its console
@@ -58,7 +58,14 @@ Pairwise absolute differences between the averages:
 - Ambient room light and phone flashlight: 15177.2
 
 These values describe only the measurements collected during this experiment.
-No anomaly conclusion or threshold is defined from them during Week 2.
+The covered readings remained within a low and narrow range. Ambient room-light
+readings were also stable, with a range of 144 ADC units. Phone-flashlight
+readings were consistently higher and increased during the measurement series,
+showing a clear sensor response to stronger illumination under the manual test
+conditions.
+
+No anomaly threshold has been selected yet. No anomaly conclusion or detector
+is defined from these measurements during Week 2.
 
 ## Project boundary
 

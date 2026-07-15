@@ -628,3 +628,41 @@ Collect and document repeatable photoresistor baseline measurements.
 
 - Review the completed Week 2 hardware consolidation records.
 - Keep anomaly detection work out of scope until the planned project phase.
+
+## 2026-07-15
+
+### Goal
+
+Review the baseline experiment records and close Week 2 hardware consolidation.
+
+### Work done
+
+- Verified that the baseline dataset contains 90 real measurements: 30 covered, 30 in ambient room light, and 30 with a phone flashlight.
+- Saved the unchanged measurements in `experiments/raw_data/photoresistor_baseline.csv`.
+- Reviewed the numerical summary and documented the observed sensor behavior.
+- Marked the Week 2 hardware consolidation checklist as completed.
+- Added the current project status to `README.md`.
+
+### Observations
+
+- Covered: minimum 16, maximum 80, average 47.5.
+- Ambient room light: minimum 24293, maximum 24437, average 24368.7.
+- Phone flashlight: minimum 36889, maximum 42010, average 39545.9.
+- Absolute average difference between covered and ambient room light: 24321.3.
+- Absolute average difference between covered and phone flashlight: 39498.4.
+- Absolute average difference between ambient room light and phone flashlight: 15177.2.
+- Covered and ambient readings were stable within their respective conditions.
+- Flashlight readings were higher and increased during the manual measurement series.
+- The sensor showed a clear response across the three lighting conditions.
+
+### Issues / open questions
+
+- No hardware or data-recording issue remains open for Week 2.
+- No anomaly threshold has been selected yet.
+
+### Week 2 conclusion
+
+- Week 2 hardware consolidation is completed.
+- The main peripherals are verified in MicroPython.
+- Photoresistor baseline measurements are recorded and documented.
+- Week 3 implementation has not started.

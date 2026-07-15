@@ -14,7 +14,7 @@ Consolidate the ESP32-C6 hardware bring-up and prepare a clean, reusable firmwar
 - [x] Collect photoresistor baseline measurements
 - [x] Save baseline measurements in the experiments folder
 - [x] Update LOG.md and hardware documentation
-- [ ] Complete Week 2 hardware consolidation
+- [x] Complete Week 2 hardware consolidation
 
 ## Out of scope
 
@@ -29,5 +29,5 @@ Consolidate the ESP32-C6 hardware bring-up and prepare a clean, reusable firmwar
 
 The repeatable photoresistor baseline experiment was run manually in Thonny on
 2026-07-13. All 90 raw readings are saved in the experiments folder and the
-descriptive results are documented. Week 2 completion remains pending final
-review.
+descriptive results are documented. Week 2 hardware consolidation was reviewed
+and completed on 2026-07-15 without starting Week 3 implementation.

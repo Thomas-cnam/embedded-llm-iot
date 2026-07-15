@@ -53,3 +53,11 @@ Week 1 focuses on repository preparation, documentation, team organization, and 
 
 The repository should be shared with GitHub user: `matusformanek`.
 
+## Current Status
+
+- Week 1: completed
+- Week 2 hardware consolidation: completed
+- Main peripherals verified in MicroPython
+- Photoresistor baseline measurements recorded
+- Next planned milestone: Week 3 edge anomaly detector
+- No anomaly detector implemented yet
