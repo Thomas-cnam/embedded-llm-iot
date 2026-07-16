@@ -760,3 +760,64 @@ Complete the initial Week 3 anomaly-detector design without implementing detecto
 - No anomaly detector, alarm controller, event formatter, serial link, gateway, or LLM feature was implemented.
 - No hardware test or experiment was run.
 - Raw baseline measurements were not modified.
+
+## 2026-07-16
+
+### Goal
+
+Implement and validate the pure Week 3 photoresistor anomaly-detector logic before hardware integration.
+
+### Work done
+
+- Added a provisional anomaly-detector configuration module.
+- Added a hardware-independent photoresistor anomaly detector.
+- Implemented low-light and high-light threshold detection.
+- Implemented sudden-drop and sudden-rise detection.
+- Added recent-reading history and detector-state tracking.
+- Added input and configuration validation.
+- Added host-side automated tests using simulated sensor values.
+- Documented the simulated detector tests.
+- Updated the Week 3 checklist for completed implementation tasks.
+
+### Automated test result
+
+- Command: `py -m unittest discover -s tests -p "test_anomaly_detector.py" -v`
+- Tests run: 29
+- Passed: 29
+- Failed: 0
+- Errors: 0
+- Result: `OK`
+
+### Observations
+
+- The detector logic can be tested independently from the ESP32-C6.
+- Ambient baseline values are classified as normal with the provisional configuration.
+- Covered baseline values are classified as low light.
+- Flashlight baseline values are classified as high light.
+- Large transitions can retain a secondary sudden-rise or sudden-drop condition.
+- Threshold and delta values remain provisional.
+- Cooldown and event suppression remain separate from the pure detector.
+
+### Issues / open questions
+
+- Real ADC readings still need to be connected to the detector.
+- Real timing behavior has not been tested.
+- Local RGB LED and buzzer responses are not implemented.
+- JSON event serialization is not implemented.
+- Alert cooldown is not implemented.
+- Moving-average deviation remains optional.
+- Real hardware tests may require threshold changes.
+
+### Next steps
+
+- Review the simulated-test results.
+- Define the detector integration layer.
+- Add cooldown and state-transition-based alert suppression outside the pure detector.
+- Define local alarm behavior.
+- Do not implement the Python gateway or LLM yet.
+
+### Scope confirmation
+
+- No code was run on the ESP32-C6 and COM3 was not opened.
+- No peripheral module or raw experiment file was modified.
+- No local alarm, JSON serialization, serial output, gateway, or LLM feature was implemented.

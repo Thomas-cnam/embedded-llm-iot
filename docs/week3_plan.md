@@ -24,14 +24,28 @@ Design decisions and all provisional values are documented in `anomaly_detector_
 
 ### Firmware implementation
 
-- [ ] Create a reusable detector module without changing verified peripheral behavior
-- [ ] Create finite or safely stoppable detector test code
+- [x] Create a reusable anomaly detector module without changing verified peripheral behavior
+- [x] Implement threshold crossing
+- [x] Implement low-light detection
+- [x] Implement high-light detection
+- [x] Implement sudden delta detection
+- [x] Maintain recent-reading history
+- [x] Add configurable low-light and high-light thresholds
+- [x] Add a configurable sudden-change limit
+- [x] Add clear structured detector result types
+- [x] Keep the pure detector compatible with MicroPython and standard Python
+- [ ] Integrate the configurable sample interval
+- [ ] Implement cooldown or anti-repeat behavior outside the pure detector
+- [ ] Investigate optional moving-average deviation if hardware tests require it
+- [ ] Create finite or safely stoppable hardware integration test code
 - [ ] Integrate deterministic RGB LED and buzzer alarm behavior
 - [ ] Ensure local detection and alarm operation do not depend on a laptop connection
 - [ ] Define a versioned structured JSON alert format
 - [ ] Include sufficient alert fields for traceability, such as detector version, sensor value, state, and device uptime
 - [ ] Ensure normal sensor output cannot accidentally produce malformed protocol messages
 - [ ] Add concise firmware documentation and usage instructions
+
+The detector core has passed simulated host-side tests. Real ESP32-C6 integration and threshold validation remain pending. Cooldown, local alarms, JSON serialization, serial output, and moving-average deviation are not implemented.
 
 ### Verification
 
