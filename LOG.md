@@ -707,3 +707,56 @@ Create an adjustable roadmap and detailed plan for the remaining internship work
 - No Week 3 implementation was started.
 - No runtime or model was installed.
 - No experiment was run and no result was invented.
+
+## 2026-07-16
+
+### Goal
+
+Complete the initial Week 3 anomaly-detector design without implementing detector or alarm code.
+
+### Work done
+
+- Reviewed all 90 real readings in `experiments/raw_data/photoresistor_baseline.csv`.
+- Confirmed the documented covered, ambient, and phone-flashlight statistics.
+- Created `docs/anomaly_detector_design.md`.
+- Defined detector goals, anomaly types, priority rules, result fields, component responsibilities, and validation requirements.
+- Proposed provisional thresholds of 5000 for low light, 32000 for high light, and 8000 for sudden absolute change.
+- Proposed a 500 ms sample interval, five-reading history, and five-second alert cooldown for future validation.
+- Created `docs/anomaly_event_schema.md` with a provisional versioned JSON-line contract for future Week 4 gateway use.
+- Updated only the completed design items in `docs/week3_plan.md`.
+
+### Observations
+
+- Covered readings from 16 to 80 are far below the provisional low threshold.
+- Ambient readings from 24293 to 24437 are inside the provisional normal range.
+- Phone-flashlight readings from 36889 to 42010 are above the provisional high threshold.
+- Current baseline clusters are clearly separated, but another location, orientation, or power condition may change the values.
+- Threshold and delta detection are the simplest initial methods supported by the current evidence.
+- Moving-average deviation remains optional and is not selected for initial implementation.
+
+### Design decisions
+
+- Threshold anomalies have proposed primary-state priority.
+- Sudden rise or drop information is retained as a secondary method when a threshold also matches.
+- Pure detector classification remains separate from alarm control and event cooldown.
+- Alert emission should occur on entry into a new anomaly state rather than on every sample.
+- The planned serial transport uses one JSON object per line.
+
+### Issues / open questions
+
+- All proposed thresholds and timing values are provisional and require real Week 3 validation.
+- Recovery-event behavior, timer restart handling, and repeated-event policy remain open design questions.
+- Exact RGB LED and buzzer behavior must be validated during later hardware integration.
+
+### Next steps
+
+- Review the provisional design before implementation.
+- Implement the pure detector separately in the next authorized Week 3 task.
+- Keep firmware integration and hardware tests pending until explicitly requested.
+
+### Scope confirmation
+
+- No firmware or source-code file was modified.
+- No anomaly detector, alarm controller, event formatter, serial link, gateway, or LLM feature was implemented.
+- No hardware test or experiment was run.
+- Raw baseline measurements were not modified.

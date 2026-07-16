@@ -12,13 +12,15 @@ Build and validate a simple rule-based photoresistor anomaly detector on the ESP
 
 ### Detector design
 
-- [ ] Review the Week 2 baseline dataset and document its measurement conditions
-- [ ] Define normal and anomalous test scenarios before implementation
-- [ ] Define the detector input, state, output, and reset behavior
-- [ ] Select and justify a simple rule-based detection method
-- [ ] Define how candidate parameters will be calibrated without using final evaluation trials
-- [ ] Decide whether filtering, persistence, hysteresis, or cooldown behavior is required
-- [ ] Document all selected detector parameters and assumptions
+- [x] Review the Week 2 baseline dataset and document its measurement conditions
+- [x] Define normal and anomalous test scenarios before implementation
+- [x] Define the detector input, state, output, and reset behavior
+- [x] Select and justify a simple rule-based detection method
+- [x] Define how candidate parameters will be calibrated without using final evaluation trials
+- [x] Decide whether filtering, persistence, hysteresis, or cooldown behavior is required
+- [x] Document all selected detector parameters and assumptions
+
+Design decisions and all provisional values are documented in `anomaly_detector_design.md`. The planned serial event contract is documented separately in `anomaly_event_schema.md`. No implementation or hardware-verification item is complete yet.
 
 ### Firmware implementation
 
