@@ -821,3 +821,71 @@ Implement and validate the pure Week 3 photoresistor anomaly-detector logic befo
 - No code was run on the ESP32-C6 and COM3 was not opened.
 - No peripheral module or raw experiment file was modified.
 - No local alarm, JSON serialization, serial output, gateway, or LLM feature was implemented.
+
+## 2026-07-17
+
+### Goal
+
+Implement and validate the Week 3 alert cooldown, repeated-event suppression, state-transition handling, and local-alarm integration before connecting the detector to real hardware.
+
+### Work done
+
+- Added a hardware-independent alert policy.
+- Implemented first-anomaly, repeated-anomaly, anomaly-change, and recovery behavior.
+- Added configurable alert cooldown.
+- Added a local RGB LED and buzzer alarm controller using dependency injection.
+- Added a detector integration controller.
+- Added safe local-alarm error handling and cleanup.
+- Added simulated fake-peripheral tests.
+- Reran the complete detector and integration test suite.
+- Documented the integration behavior.
+- Updated the Week 3 checklist.
+
+### Automated test result
+
+- Existing detector tests: 29 passed, 0 failed, 0 errors.
+- New integration tests: 48 passed, 0 failed, 0 errors.
+- Complete suite: 77 passed, 0 failed, 0 errors.
+- Complete-suite command: `py -B -m unittest discover -s tests -p "test_*.py" -v`
+- Result: `OK`.
+- Syntax validation passed.
+
+### Observations
+
+- The detector remains independent from hardware.
+- The same anomaly is suppressed during cooldown.
+- The same anomaly can emit again after cooldown.
+- An anomaly-type change emits immediately.
+- Recovery restores the planned normal visual state.
+- Delta-only transitions that leave an active low-light or high-light threshold state are handled as recovery while retaining the raw detector result.
+- Local-alarm failures do not remove detector or policy results.
+- The integration can operate without a physical alarm controller.
+- Alarm mappings remain provisional until hardware testing.
+
+### Issues / open questions
+
+- Real ADC readings are not connected yet.
+- The RGB and buzzer behavior has not been tested through the integration controller.
+- JSON serialization is still missing.
+- Serial output is still missing.
+- MicroPython timestamp wraparound handling must be considered in the hardware application.
+- The five-second cooldown may need adjustment.
+- Moving-average deviation remains optional.
+
+### Next steps
+
+- Create the Week 3 ESP32-C6 detector application.
+- Connect GPIO 3 photoresistor readings to the integration controller.
+- Instantiate the existing RGB LED and buzzer modules.
+- Normalize MicroPython monotonic timestamps.
+- Add structured JSON event formatting.
+- Print one JSON object per anomaly event.
+- Test manually in Thonny.
+- Do not start the Python gateway or LLM.
+
+### Scope confirmation
+
+- No ESP32-C6 hardware test was run and COM3 was not opened.
+- No raw experiment data or existing peripheral module was modified.
+- No JSON serialization, serial output, gateway, LLM, or whitelist parser was implemented.
+- Week 3 remains in progress and all physical validation tasks remain pending.

@@ -34,18 +34,38 @@ Design decisions and all provisional values are documented in `anomaly_detector_
 - [x] Add a configurable sudden-change limit
 - [x] Add clear structured detector result types
 - [x] Keep the pure detector compatible with MicroPython and standard Python
+
+#### Simulated alert policy and local-alarm logic
+
+- [x] Implement cooldown or anti-repeat behavior outside the pure detector
+- [x] Define the provisional normal RGB state
+- [x] Define the provisional low-light alarm state
+- [x] Define the provisional high-light alarm state
+- [x] Define the provisional sudden-change alarm states
+- [x] Add short bounded buzzer patterns through the existing `tone()` API
+- [x] Bound every proposed buzzer duration
+- [x] Ensure buzzer shutdown through finite tones, normal state, and cleanup
+- [x] Restore the expected normal LED and buzzer state during recovery
+- [x] Keep local-alarm logic independent from the PC and LLM
+- [x] Add deterministic best-effort cleanup
+- [x] Document cooldown behavior
+- [x] Document provisional local-alarm behavior
+
+#### Pending hardware and event integration
+
 - [ ] Integrate the configurable sample interval
-- [ ] Implement cooldown or anti-repeat behavior outside the pure detector
 - [ ] Investigate optional moving-average deviation if hardware tests require it
+- [ ] Connect real GPIO 3 sensor acquisition to the integration controller
 - [ ] Create finite or safely stoppable hardware integration test code
 - [ ] Integrate deterministic RGB LED and buzzer alarm behavior
 - [ ] Ensure local detection and alarm operation do not depend on a laptop connection
 - [ ] Define a versioned structured JSON alert format
 - [ ] Include sufficient alert fields for traceability, such as detector version, sensor value, state, and device uptime
 - [ ] Ensure normal sensor output cannot accidentally produce malformed protocol messages
+- [ ] Implement JSON serialization and one-event-per-line serial output
 - [ ] Add concise firmware documentation and usage instructions
 
-The detector core has passed simulated host-side tests. Real ESP32-C6 integration and threshold validation remain pending. Cooldown, local alarms, JSON serialization, serial output, and moving-average deviation are not implemented.
+The alert policy and local-alarm integration passed host-side simulated tests. Physical ESP32-C6 integration, JSON formatting, and serial output remain pending. The pure detector and simulated local-alarm layers are implemented, but their thresholds, timing, RGB states, and buzzer behavior still require real hardware validation.
 
 ### Verification
 
@@ -54,6 +74,7 @@ The detector core has passed simulated host-side tests. Real ESP32-C6 integratio
 - [ ] Test strong-light events on the real board
 - [ ] Test transitions between conditions and detector reset behavior
 - [ ] Confirm RGB LED and buzzer responses are finite and deterministic
+- [ ] Confirm sensor acquisition continues after a physical alarm
 - [ ] Capture structured alerts from the MicroPython console
 - [ ] Record test conditions, observations, and unresolved issues in `LOG.md`
 - [ ] Save labeled Week 3 test evidence without overwriting Week 2 raw data
