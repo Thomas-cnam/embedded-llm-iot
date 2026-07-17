@@ -20,3 +20,19 @@ exiting.
 The combined smoke test was run manually in Thonny on 2026-07-13. All tested
 peripherals completed their sequence successfully, all expected visual and
 audible outputs were observed, and the safety cleanup turned all outputs off.
+
+## Week 3 anomaly hardware integration test
+
+`test_anomaly_hardware_integration.py` is a finite guided test for the real
+photoresistor, anomaly detector, alert policy, RGB LED, and buzzer integration.
+It requires the existing `/anomaly` and `/peripherals` packages to be uploaded
+to the device root before the script is opened and run manually in Thonny.
+
+The script covers ambient, covered, recovery, flashlight, and final recovery
+phases. It prints human-readable diagnostics only, never writes files on the
+board, and always attempts to turn the RGB LED and buzzer off. Do not save it as
+`main.py`. Preparation and expected observations are documented in
+`docs/week3_hardware_integration_test.md`.
+
+This test has not yet been run on the ESP32-C6. Its physical results remain
+pending.

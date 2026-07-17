@@ -889,3 +889,52 @@ Implement and validate the Week 3 alert cooldown, repeated-event suppression, st
 - No raw experiment data or existing peripheral module was modified.
 - No JSON serialization, serial output, gateway, LLM, or whitelist parser was implemented.
 - Week 3 remains in progress and all physical validation tasks remain pending.
+
+## 2026-07-17
+
+### Goal
+
+Prepare the finite Week 3 ESP32-C6 anomaly hardware-integration test for later
+manual execution.
+
+### Work done
+
+- Created `firmware/tests/test_anomaly_hardware_integration.py`.
+- Connected the existing photoresistor, detector, alert policy, integration
+  controller, RGB LED, and buzzer classes without duplicating their logic.
+- Added guided ambient, covered, recovery, flashlight, and final-recovery
+  phases.
+- Added a 500 ms sample interval and MicroPython timestamp normalization using
+  `ticks_ms()` with `ticks_diff()`.
+- Added deterministic cleanup for the RGB LED and buzzer PWM.
+- Documented device preparation, manual procedure, expected behavior, and
+  observations that must be recorded.
+- Marked only creation of the finite hardware-integration test code as complete
+  in the Week 3 checklist.
+
+### Observations
+
+- The script uses the confirmed GPIO mappings and existing project modules.
+- It is finite and prints human-readable diagnostics rather than JSON events.
+- The serial LED strip is not used.
+- No hardware test was executed during this task.
+
+### Issues / open questions
+
+- Real ADC acquisition through the integration controller is not yet verified.
+- Physical RGB, buzzer, cooldown, and recovery behavior remain pending.
+- The provisional thresholds and timing still require real-board validation.
+
+### Next steps
+
+- Upload `/anomaly` and `/peripherals` to the ESP32-C6 device root.
+- Open the prepared test script in Thonny and run it manually.
+- Record real values and physical observations before updating the remaining
+  Week 3 checklist items.
+
+### Scope confirmation
+
+- COM3 was not opened and no code was uploaded or run on the ESP32-C6.
+- No existing anomaly or peripheral implementation was changed.
+- No JSON, serial protocol, gateway, LLM, or whitelist feature was added.
+- No raw experimental data was modified.

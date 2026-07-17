@@ -56,7 +56,7 @@ Design decisions and all provisional values are documented in `anomaly_detector_
 - [ ] Integrate the configurable sample interval
 - [ ] Investigate optional moving-average deviation if hardware tests require it
 - [ ] Connect real GPIO 3 sensor acquisition to the integration controller
-- [ ] Create finite or safely stoppable hardware integration test code
+- [x] Create finite or safely stoppable hardware integration test code
 - [ ] Integrate deterministic RGB LED and buzzer alarm behavior
 - [ ] Ensure local detection and alarm operation do not depend on a laptop connection
 - [ ] Define a versioned structured JSON alert format
@@ -66,6 +66,11 @@ Design decisions and all provisional values are documented in `anomaly_detector_
 - [ ] Add concise firmware documentation and usage instructions
 
 The alert policy and local-alarm integration passed host-side simulated tests. Physical ESP32-C6 integration, JSON formatting, and serial output remain pending. The pure detector and simulated local-alarm layers are implemented, but their thresholds, timing, RGB states, and buzzer behavior still require real hardware validation.
+
+A finite guided hardware-integration script is now prepared and documented.
+It has not been executed, so real sensor acquisition, RGB and buzzer behavior,
+cooldown, recovery, and continued acquisition remain unchecked until the
+manual Thonny test is completed.
 
 ### Verification
 
