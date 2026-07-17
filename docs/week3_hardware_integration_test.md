@@ -6,8 +6,8 @@
 MicroPython test that connects the real photoresistor to the existing detector,
 alert policy, integration controller, RGB LED, and buzzer modules.
 
-The script has been prepared for manual execution. It has not been run on the
-ESP32-C6, and no physical result is claimed in this document.
+The script was run manually on the ESP32-C6 in Thonny on 2026-07-17. The
+operator confirmed the expected physical RGB LED states and buzzer tones.
 
 ## Confirmed Hardware
 
@@ -61,9 +61,34 @@ or print structured JSON events.
 - Final recovery should restore green and silence the buzzer.
 - Repeated readings of the same anomaly should be suppressed during cooldown.
 
-These are expected behaviors from the provisional configuration, not recorded
-hardware observations. Actual values, colors, tones, cooldown behavior, and
-recovery behavior must be checked manually.
+These provisional behaviors were checked during the manual test described
+below.
+
+## Manual Test Results
+
+Test date: 2026-07-17
+
+| Phase | ADC observations | Detector and policy result | Physical observation |
+|---|---|---|---|
+| Ambient | 24005 to 24053 | Normal; normal state initialized once | Green RGB LED; buzzer off |
+| Covered | 1440 to 12098 | Initial sudden drop, then low light from sample 7 | Expected red alerts and short tones observed |
+| Ambient recovery | 23957 to 24053 | Sudden rise handled as recovery, then normal | Green RGB LED restored; buzzer off |
+| Phone flashlight | 38713 to 39417 | High light on all samples | Blue RGB LED and expected 880 Hz tones observed |
+| Final recovery | 23669 to 24117 | Sudden drop handled as recovery, then normal | Green RGB LED restored; buzzer off |
+
+The covered phase included intermediate readings while the sensor was being
+covered. It first produced a `sudden_drop` alert at 6705, briefly returned to a
+normal classification, and entered stable `low_light` at 4129 and below. This
+reflects the real manual transition and is not recorded as a script failure.
+
+During the flashlight phase, repeated `high_light` readings were suppressed
+during cooldown. A bounded repeat alert occurred at sample 11 after the
+provisional five-second cooldown. Acquisition continued after every tone.
+
+Both ambient-recovery phases restored the normal state. The sequence completed
+without an exception, and the final safety cleanup turned the RGB LED and
+buzzer off. The operator confirmed that the displayed LED colors and audible
+tones matched the planned mappings.
 
 ## Timestamp Handling
 
@@ -77,15 +102,17 @@ The complete sequence is finite. A `finally` block resets the integration,
 turns the RGB LED and buzzer off, and deinitializes the buzzer PWM even when an
 error occurs. Nothing is written to the ESP32-C6 filesystem.
 
-## Results to Record Manually
+## Recorded Validation
 
-After execution, record:
+- Real GPIO 3 acquisition: confirmed
+- Normal, low-light, high-light, and transition detection: confirmed
+- Physical RGB LED behavior: confirmed
+- Physical buzzer behavior: confirmed
+- Cooldown suppression and repeat during high light: confirmed
+- Recovery to the normal local state: confirmed
+- Continued acquisition after alarms: confirmed
+- Final output cleanup: confirmed
+- Console or cleanup error: none observed
 
-- representative ADC values for every phase;
-- observed RGB states and buzzer tones;
-- whether repeated alerts were suppressed during cooldown;
-- whether recovery restored the normal state;
-- whether acquisition continued after each alarm;
-- any console or cleanup error.
-
-Do not mark the physical test complete until all observations have been made.
+JSON formatting and serial event output were not part of this test and remain
+pending.

@@ -938,3 +938,62 @@ manual execution.
 - No existing anomaly or peripheral implementation was changed.
 - No JSON, serial protocol, gateway, LLM, or whitelist feature was added.
 - No raw experimental data was modified.
+
+## 2026-07-17
+
+### Goal
+
+Run and validate the finite Week 3 anomaly hardware-integration test on the
+ESP32-C6.
+
+### Work done
+
+- Ran `firmware/tests/test_anomaly_hardware_integration.py` manually in Thonny.
+- Tested ambient room light, a covered sensor, ambient recovery, a phone
+  flashlight, and final ambient recovery.
+- Confirmed the expected physical RGB LED colors and buzzer tones.
+- Observed alert suppression and a repeat after the five-second cooldown.
+- Confirmed that sensor acquisition continued after local alarms.
+- Confirmed final RGB LED and buzzer cleanup.
+
+### Observations
+
+- Initial ambient readings were stable from 24005 to 24053 and classified as
+  normal; the RGB LED showed green and the buzzer remained off.
+- During manual covering, values ranged from 12098 down to 1440. A
+  `sudden_drop` alert occurred first, followed by stable `low_light` from sample
+  7; the expected red alerts and short tones were observed.
+- Ambient recovery readings ranged from 23957 to 24053. The first sudden rise
+  was handled as recovery, and the normal green state was restored.
+- Flashlight readings ranged from 38713 to 39417 and remained `high_light`.
+  The expected blue state and 880 Hz tones were observed.
+- Repeated high-light alerts were suppressed during cooldown, then a bounded
+  repeat occurred at sample 11 after five seconds.
+- Final ambient recovery readings ranged from 23669 to 24117. Recovery restored
+  green and silenced the buzzer.
+- The sequence completed without an error and printed
+  `Safety cleanup complete: RGB LED and buzzer are off.`
+
+### Issues / open questions
+
+- The covered phase included intermediate classifications while the sensor was
+  being positioned; stable low light appeared once the value fell below 5000.
+- Only the high-light phase remained active long enough to demonstrate a
+  cooldown repeat after five seconds.
+- JSON event formatting and serial output remain pending.
+- Thresholds and timing remain provisional until additional repeated trials are
+  available.
+
+### Next steps
+
+- Preserve this physical validation as Week 3 evidence.
+- Implement the already designed structured JSON event output in a separate
+  authorized task.
+- Keep gateway and local LLM work out of scope until the firmware event path is
+  complete.
+
+### Scope confirmation
+
+- No gateway, LLM, whitelist parser, or serial LED feature was used.
+- No raw Week 2 experimental data was modified.
+- No structured JSON or serial event output was implemented during this test.

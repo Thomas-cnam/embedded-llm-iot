@@ -34,5 +34,7 @@ board, and always attempts to turn the RGB LED and buzzer off. Do not save it as
 `main.py`. Preparation and expected observations are documented in
 `docs/week3_hardware_integration_test.md`.
 
-This test has not yet been run on the ESP32-C6. Its physical results remain
-pending.
+The test was run manually in Thonny on 2026-07-17. Real GPIO 3 acquisition,
+normal and anomalous states, RGB LED behavior, bounded buzzer tones, cooldown,
+recovery, continued acquisition, and final cleanup were confirmed. Detailed
+results are recorded in `docs/week3_hardware_integration_test.md`.

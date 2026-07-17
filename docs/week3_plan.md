@@ -53,35 +53,39 @@ Design decisions and all provisional values are documented in `anomaly_detector_
 
 #### Pending hardware and event integration
 
-- [ ] Integrate the configurable sample interval
+- [x] Integrate the configurable sample interval
 - [ ] Investigate optional moving-average deviation if hardware tests require it
-- [ ] Connect real GPIO 3 sensor acquisition to the integration controller
+- [x] Connect real GPIO 3 sensor acquisition to the integration controller
 - [x] Create finite or safely stoppable hardware integration test code
-- [ ] Integrate deterministic RGB LED and buzzer alarm behavior
+- [x] Integrate deterministic RGB LED and buzzer alarm behavior
 - [ ] Ensure local detection and alarm operation do not depend on a laptop connection
 - [ ] Define a versioned structured JSON alert format
 - [ ] Include sufficient alert fields for traceability, such as detector version, sensor value, state, and device uptime
 - [ ] Ensure normal sensor output cannot accidentally produce malformed protocol messages
 - [ ] Implement JSON serialization and one-event-per-line serial output
-- [ ] Add concise firmware documentation and usage instructions
+- [x] Add concise firmware documentation and usage instructions
 
-The alert policy and local-alarm integration passed host-side simulated tests. Physical ESP32-C6 integration, JSON formatting, and serial output remain pending. The pure detector and simulated local-alarm layers are implemented, but their thresholds, timing, RGB states, and buzzer behavior still require real hardware validation.
+The alert policy and local-alarm integration passed host-side simulated tests,
+and the first physical ESP32-C6 integration test passed on 2026-07-17. The
+provisional thresholds, timing, RGB states, and buzzer behavior now have one
+successful real-board validation but still require repeated trials before they
+are treated as final. JSON formatting and serial output remain pending.
 
-A finite guided hardware-integration script is now prepared and documented.
-It has not been executed, so real sensor acquisition, RGB and buzzer behavior,
-cooldown, recovery, and continued acquisition remain unchecked until the
-manual Thonny test is completed.
+The finite guided hardware-integration script was run manually on 2026-07-17.
+Real sensor acquisition, RGB and buzzer behavior, cooldown, recovery, continued
+acquisition, and final cleanup were confirmed. JSON formatting and serial
+output remain pending.
 
 ### Verification
 
-- [ ] Test normal ambient-light behavior on the real board
-- [ ] Test covered-sensor events on the real board
-- [ ] Test strong-light events on the real board
-- [ ] Test transitions between conditions and detector reset behavior
-- [ ] Confirm RGB LED and buzzer responses are finite and deterministic
-- [ ] Confirm sensor acquisition continues after a physical alarm
+- [x] Test normal ambient-light behavior on the real board
+- [x] Test covered-sensor events on the real board
+- [x] Test strong-light events on the real board
+- [x] Test transitions between conditions and detector reset behavior
+- [x] Confirm RGB LED and buzzer responses are finite and deterministic
+- [x] Confirm sensor acquisition continues after a physical alarm
 - [ ] Capture structured alerts from the MicroPython console
-- [ ] Record test conditions, observations, and unresolved issues in `LOG.md`
+- [x] Record test conditions, observations, and unresolved issues in `LOG.md`
 - [ ] Save labeled Week 3 test evidence without overwriting Week 2 raw data
 
 ## Deliverables
@@ -94,12 +98,12 @@ manual Thonny test is completed.
 
 ## Definition of Done
 
-- [ ] The detector runs on the ESP32-C6 using the confirmed GPIO 3 sensor input
-- [ ] Local RGB LED and buzzer alarms work without the gateway or local LLM
+- [x] The detector runs on the ESP32-C6 using the confirmed GPIO 3 sensor input
+- [x] Local RGB LED and buzzer alarms work without the gateway or local LLM
 - [ ] Normal and anomalous scenarios produce reproducible, documented behavior
 - [ ] Each detected event emits parseable structured JSON with the required fields
-- [ ] Detector limitations and calibration decisions are documented
-- [ ] No gateway or LLM dependency has been introduced into the detector
+- [x] Detector limitations and calibration decisions are documented
+- [x] No gateway or LLM dependency has been introduced into the detector
 
 ## Adjustment Notes
 
