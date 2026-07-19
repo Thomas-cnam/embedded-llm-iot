@@ -120,5 +120,6 @@ JSON formatting and serial event output were not part of the successful
 2026-07-17 run. The script was updated on 2026-07-19 to add those outputs while
 preserving the same five phases and cleanup. The first JSON-enabled run captured
 four valid events and completed safely. A compact-output compatibility issue
-was then corrected, so one repeat run and physical LED/buzzer confirmation are
-still pending. See `week3_serial_event_test.md` for details.
+was then corrected and validated by a second complete run. Physical LED/buzzer
+confirmation for that repeat still remains pending. See
+`week3_serial_event_test.md` for details.

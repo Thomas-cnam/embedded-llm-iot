@@ -122,14 +122,14 @@ valid JSON but did not satisfy the intended compact representation.
 The formatter now removes whitespace only while outside JSON strings after
 serialization. Spaces and escaped characters inside strings remain unchanged.
 This keeps compatibility with `ujson` variants that do not provide a
-`separators` argument. The correction passes host tests but still requires a
-repeat MicroPython capture.
+`separators` argument. The correction passes host tests and was confirmed by a
+second MicroPython capture containing four compact events on 2026-07-19.
 
 ## Scope and Limitations
 
 - No ESP32-C6, COM3, Thonny, or `mpremote` access occurred.
-- One MicroPython console capture exists, but it predates the compact-output
-  compatibility correction.
+- Two MicroPython console captures exist; the second validates the compact
+  output correction.
 - One-event-per-line printing is implemented by the finite guided script, not
   by this pure formatter.
 - No gateway, LLM, or whitelist code is present.

@@ -1213,3 +1213,71 @@ the ESP32-C6 guided test.
 - No gateway, LLM, whitelist parser, or gateway-to-board command was added.
 - No Week 2 raw data was modified.
 - Week 3 remains in progress pending corrected repeat validation.
+
+## 2026-07-19
+
+### Goal
+
+Repeat the complete JSON-enabled hardware scenario and validate the compact
+MicroPython event-output correction.
+
+### Work done
+
+- Repeated all five guided phases in Thonny after replacing
+  `/anomaly/event_formatter.py` on the ESP32-C6.
+- Captured 60 real sensor samples and four schema version 1.0 JSON events.
+- Saved the unchanged console output as
+  `experiments/week3/console_output_2026-07-19_run2.txt`.
+- Parsed all samples into
+  `experiments/week3/labeled_results_2026-07-19_run2.csv`.
+- Verified every event with a JSON parser.
+- Confirmed that no event line contains spaces after commas or colons.
+- Preserved physical-observation fields as empty pending explicit operator
+  confirmation.
+
+### Real capture summary
+
+- Ambient: 12 samples, 10610 to 10962, average 10879.3, no JSON events.
+- Covered: 12 samples, 704 to 1392, average 790.7, two low-light events.
+- Ambient recovery: 12 samples, 10834 to 10914, average 10867.3, no JSON
+  events.
+- Phone flashlight: 12 samples, 38969 to 41546, average 39995.9, two high-light
+  events.
+- Final ambient recovery: 12 samples, 10546 to 10706, average 10656.7, no JSON
+  events.
+- Event identifiers were 1, 2, 3, and 4.
+- Entry events occurred at sample 1 of the covered and flashlight phases.
+- Cooldown repeats occurred at sample 11 of both anomalous phases.
+- No JSON event was produced for normal, recovery, or suppressed readings.
+- Acquisition continued after all events and final cleanup completed.
+
+### Comparison with run 1
+
+- Room-light values were lower in run 2, confirming that ambient conditions
+  vary between trials.
+- Both runs kept ambient values inside the provisional normal range.
+- Both runs kept covered values below 5000 and flashlight values above 32000.
+- Both runs produced the same four-event pattern with continuous identifiers.
+- Run 2 validates compact JSON output from the corrected formatter.
+
+### Issues / open questions
+
+- The console confirms successful alarm-controller calls but does not prove the
+  colors or sounds physically observed by the operator.
+- Physical RGB and buzzer confirmation for run 2 remains required before Week
+  3 closure.
+- The laptop-independence checklist item remains pending.
+
+### Next steps
+
+- Obtain explicit operator confirmation of RGB colors and buzzer sounds for run
+  2.
+- Populate the physical-observation columns in the run 2 CSV only from that
+  confirmation.
+- Review the remaining Week 3 checklist without starting gateway or LLM work.
+
+### Scope confirmation
+
+- No gateway, LLM, whitelist parser, or gateway-to-board command was added.
+- No Week 2 raw data was modified.
+- Week 3 remains in progress pending physical observation confirmation.

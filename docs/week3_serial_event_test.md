@@ -10,7 +10,7 @@ schema version 1.0 event formatter.
 The first JSON-enabled run was performed manually on 2026-07-19. Its complete
 console output and mechanically parsed sample data are stored under
 `experiments/week3/`. A compact-output compatibility correction was prepared
-after that run and still requires a repeat capture.
+after that run and validated by the second capture documented below.
 
 ## Output Separation
 
@@ -128,12 +128,43 @@ verify that spaces and escaped characters inside strings remain unchanged.
 The operator has not yet confirmed the physical LED colors and buzzer sounds
 for this specific run, so those evidence fields remain empty.
 
+## Corrected Repeat Capture
+
+Run date: 2026-07-19, run 2
+
+| Phase | Samples | Minimum | Maximum | Average | JSON events |
+|---|---:|---:|---:|---:|---:|
+| Ambient | 12 | 10610 | 10962 | 10879.3 | 0 |
+| Covered | 12 | 704 | 1392 | 790.7 | 2 |
+| Ambient recovery | 12 | 10834 | 10914 | 10867.3 | 0 |
+| Phone flashlight | 12 | 38969 | 41546 | 39995.9 | 2 |
+| Final ambient recovery | 12 | 10546 | 10706 | 10656.7 | 0 |
+
+Observed event sequence:
+
+1. `low_light`, entered anomaly, value 1392, timestamp 15547 ms;
+2. `low_light`, cooldown repeat, value 736, timestamp 20815 ms;
+3. `high_light`, entered anomaly, value 38969, timestamp 37127 ms;
+4. `high_light`, cooldown repeat, value 40553, timestamp 42396 ms.
+
+All four events parsed successfully, contained the required schema version 1.0
+fields, used continuous identifiers 1 through 4, and contained no spaces after
+JSON separators. No JSON was emitted for normal, recovery, or suppressed
+readings. Acquisition continued after every event and cleanup completed without
+a console error.
+
+The lower ambient values compared with run 1 show that room-light conditions
+can vary substantially. Despite that variation, all ambient values remained
+between the provisional low and high thresholds, covered values remained below
+the low threshold, and flashlight values remained above the high threshold in
+both runs.
+
+Physical RGB and buzzer observations for run 2 still require explicit operator
+confirmation.
+
 ## Pending Validation
 
-- Upload the corrected `event_formatter.py` and repeat the guided script.
-- Confirm that captured JSON contains no separator spaces.
 - Confirm physical RGB LED colors and buzzer sounds for the repeat run.
-- Validate repeated physical scenarios.
 - Review results before closing Week 3.
 
 Gateway, LLM, whitelist, and gateway-to-board command work remain out of scope.

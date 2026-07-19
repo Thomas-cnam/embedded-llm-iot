@@ -150,4 +150,6 @@ The schema and end-to-end pipeline passed host-side tests. Four real schema
 version 1.0 events were captured from MicroPython on 2026-07-19 and parsed
 successfully. They contained separator spaces because of the device's `ujson`
 behavior, so a compatibility correction was added to the formatter. A repeat
-capture is required before compact hardware output is marked validated.
+capture produced four parseable compact events with no separator spaces.
+Compact schema version 1.0 hardware output is therefore validated for the
+finite guided test.

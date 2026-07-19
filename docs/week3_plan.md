@@ -90,10 +90,11 @@ manual run and evidence capture.
 - [x] Add host-side formatter tests
 - [x] Document formatter behavior and restart limitations
 
-The pure formatter passed 36 dedicated host tests on 2026-07-19, and all 77
-previous tests still pass. The complete suite now contains 113 passing tests.
-No JSON was printed on the ESP32-C6, so execution of the prepared output path
-and real MicroPython capture remain pending.
+The pure formatter passes 38 dedicated host tests, the 77 detector and
+integration tests still pass, and the 11 event-pipeline tests pass. The complete
+suite now contains 126 passing tests.
+The formatter now has two real MicroPython captures. The second capture
+validates compact output; physical observation confirmation remains pending.
 
 #### JSON-enabled guided pipeline
 
@@ -106,14 +107,19 @@ and real MicroPython capture remain pending.
 - [x] Document the manual serial-event test procedure
 - [x] Run the JSON-enabled script on the ESP32-C6
 - [x] Capture real JSON event lines from Thonny
-- [ ] Complete repeated physical scenarios
+- [x] Complete repeated hardware sensor and JSON scenarios
 - [x] Save populated labeled Week 3 evidence
 
 The first JSON-enabled run captured 60 samples and four valid schema version
 1.0 events on 2026-07-19. It also exposed default `ujson` separator spaces. A
 minimal compatibility correction now passes 38 formatter tests, and the
-complete suite contains 126 passing tests. Compact MicroPython output and
-physical LED/buzzer observations require a repeat run.
+complete suite contains 126 passing tests. The corrected compact output was
+then validated in run 2.
+
+The corrected repeat run captured another 60 samples and four events. All
+events were compact and parseable, and the expected normal, low-light,
+high-light, suppression, cooldown, and recovery behavior repeated. Explicit
+physical LED and buzzer confirmation for this run remains pending.
 
 ### Verification
 
@@ -139,7 +145,7 @@ physical LED/buzzer observations require a repeat run.
 
 - [x] The detector runs on the ESP32-C6 using the confirmed GPIO 3 sensor input
 - [x] Local RGB LED and buzzer alarms work without the gateway or local LLM
-- [ ] Normal and anomalous scenarios produce reproducible, documented behavior
+- [x] Normal and anomalous scenarios produce reproducible, documented behavior
 - [x] Each detected event emits parseable structured JSON with the required fields
 - [x] Detector limitations and calibration decisions are documented
 - [x] No gateway or LLM dependency has been introduced into the detector
