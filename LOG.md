@@ -997,3 +997,75 @@ ESP32-C6.
 - No gateway, LLM, whitelist parser, or serial LED feature was used.
 - No raw Week 2 experimental data was modified.
 - No structured JSON or serial event output was implemented during this test.
+
+## 2026-07-19
+
+### Goal
+
+Implement and validate a pure MicroPython-compatible anomaly-event formatter
+without adding serial transport or accessing the ESP32-C6.
+
+### Work done
+
+- Created `firmware/anomaly/event_formatter.py`.
+- Implemented schema version 1.0 anomaly-event construction from the combined
+  integration-controller result.
+- Added incrementing event identifiers with configurable starting value and
+  deterministic reset behavior.
+- Added compact JSON serialization with `ujson` preference and standard `json`
+  fallback.
+- Returned no event for normal, recovery, or cooldown-suppressed results.
+- Added strict validation for required fields, types, ranges, detector-state
+  consistency, history, thresholds, timestamps, and emission consistency.
+- Exported `AnomalyEventFormatter` from `firmware/anomaly/__init__.py`.
+- Added 36 host-side formatter tests and formatter documentation.
+- Updated the schema, firmware documentation, and Week 3 checklist.
+
+### Automated test result
+
+- New event-formatter tests: 36 passed, 0 failed, 0 errors.
+- Existing detector and integration tests: 77 still passed.
+- Complete suite: 113 passed, 0 failed, 0 errors.
+- Formatter command:
+  `py -B -m unittest discover -s tests -p "test_anomaly_event_formatter.py" -v`
+- Complete-suite command:
+  `py -B -m unittest discover -s tests -p "test_*.py"`
+- Result: `OK`.
+
+### Observations
+
+- Event identifiers advance only when a new anomaly alert is emitted.
+- Normal and suppressed integration results return `None` without consuming an
+  identifier.
+- The serialized representation is one compact JSON object with no newline.
+- Event history is copied so the formatter does not expose mutable detector
+  state.
+- Malformed integration results raise clear errors and are not repaired.
+- Formatting remains independent from hardware, alarms, transport, gateway,
+  and LLM code.
+
+### Issues / open questions
+
+- The formatter has not been imported or run on MicroPython hardware yet.
+- No real JSON line has been printed or captured from the ESP32-C6.
+- A future transport layer must append exactly one newline per emitted event.
+- Event identifiers restart from the configured value after formatter reset or
+  device restart; the future gateway must account for this behavior.
+- Recovery events remain optional and are not emitted by this implementation.
+
+### Next steps
+
+- Integrate the pure formatter into a finite MicroPython test in a separate
+  authorized task.
+- Print and capture one compact JSON object per emitted anomaly event.
+- Keep serial transport separate from formatting.
+- Do not start the Python gateway or local LLM until firmware JSON output is
+  validated.
+
+### Scope confirmation
+
+- COM3, Thonny, and `mpremote` were not used.
+- No file was uploaded to or run on the ESP32-C6.
+- No serial transport, gateway, LLM, or whitelist parser was implemented.
+- No raw experimental data or existing detector behavior was modified.
+- Week 3 remains in progress.

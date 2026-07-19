@@ -59,9 +59,9 @@ Design decisions and all provisional values are documented in `anomaly_detector_
 - [x] Create finite or safely stoppable hardware integration test code
 - [x] Integrate deterministic RGB LED and buzzer alarm behavior
 - [ ] Ensure local detection and alarm operation do not depend on a laptop connection
-- [ ] Define a versioned structured JSON alert format
-- [ ] Include sufficient alert fields for traceability, such as detector version, sensor value, state, and device uptime
-- [ ] Ensure normal sensor output cannot accidentally produce malformed protocol messages
+- [x] Define a versioned structured JSON alert format
+- [x] Include sufficient alert fields for traceability, such as detector version, sensor value, state, and device uptime
+- [x] Ensure normal sensor output cannot accidentally produce malformed protocol messages
 - [ ] Implement JSON serialization and one-event-per-line serial output
 - [x] Add concise firmware documentation and usage instructions
 
@@ -75,6 +75,23 @@ The finite guided hardware-integration script was run manually on 2026-07-17.
 Real sensor acquisition, RGB and buzzer behavior, cooldown, recovery, continued
 acquisition, and final cleanup were confirmed. JSON formatting and serial
 output remain pending.
+
+#### Pure anomaly-event formatting
+
+- [x] Create a MicroPython-compatible schema version 1.0 event formatter
+- [x] Build events only when the alert policy requests emission
+- [x] Return no event for normal and suppressed readings
+- [x] Assign incrementing event identifiers only to emitted events
+- [x] Serialize events as compact single-object JSON strings
+- [x] Keep formatting independent from hardware and serial transport
+- [x] Reject malformed integration results without silently repairing them
+- [x] Add host-side formatter tests
+- [x] Document formatter behavior and restart limitations
+
+The pure formatter passed 36 dedicated host tests on 2026-07-19, and all 77
+previous tests still pass. The complete suite now contains 113 passing tests.
+No JSON was printed on the ESP32-C6, so serial output and real MicroPython
+capture remain pending.
 
 ### Verification
 

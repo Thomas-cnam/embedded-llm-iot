@@ -4,7 +4,9 @@
 
 This document defines the planned JSON event format emitted by the ESP32-C6 anomaly detector over USB serial. The format is designed for the future Week 4 Python gateway.
 
-This is a provisional design. No serial event formatter or gateway parser has been implemented yet.
+Schema version 1.0 is implemented by the pure
+`AnomalyEventFormatter` and validated with host-side tests. Serial output,
+real MicroPython JSON capture, and the gateway parser are not implemented yet.
 
 ## Transport Rule
 
@@ -14,7 +16,9 @@ This is a provisional design. No serial event formatter or gateway parser has be
 - Diagnostic text, if retained during development, must be clearly separated from JSON event lines
 - The gateway must later ignore non-JSON lines safely
 
-Each event line should end with a newline so a future gateway can process one complete object at a time. Pretty-printed multi-line JSON should not be used on the serial transport.
+The formatter currently returns compact JSON without a newline. A future
+transport layer will append one newline and print exactly one object per event.
+Pretty-printed multi-line JSON must not be used on the serial transport.
 
 ## Proposed Event Types
 
@@ -23,7 +27,8 @@ Each event line should end with a newline so a future gateway can process one co
 - `status`
 - `error`
 
-Only `anomaly` is mandatory for the first Week 3 implementation. The other event types remain optional until their behavior is justified and documented.
+Only `anomaly` is implemented by the current formatter. The other event types
+remain optional until their behavior is justified and documented.
 
 ## Proposed Anomaly Types
 
@@ -32,7 +37,7 @@ Only `anomaly` is mandatory for the first Week 3 implementation. The other event
 - `sudden_drop`
 - `sudden_rise`
 
-## Proposed Required Fields
+## Schema 1.0 Fields
 
 | Field | Type | Description |
 |---|---|---|
@@ -49,7 +54,8 @@ Only `anomaly` is mandatory for the first Week 3 implementation. The other event
 | timestamp_ms | integer | Monotonic time from the ESP32 |
 | local_alarm | boolean | Whether the local alarm was triggered |
 
-## Proposed Optional Fields
+The formatter also includes these detector and policy context fields in every
+emitted event:
 
 | Field | Type | Description |
 |---|---|---|
@@ -57,13 +63,14 @@ Only `anomaly` is mandatory for the first Week 3 implementation. The other event
 | high_threshold | integer | Active high-light threshold |
 | delta_threshold | integer | Active sudden-change threshold |
 | secondary_method | string or null | Additional rule that also matched |
-| state_before | string | Previous detector state |
+| state_before | string or null | Previous detector state |
 | state_after | string | New detector state |
 | cooldown_active | boolean | Whether alert cooldown is active |
 
 ## Example Low-Light Event
 
-The following object is an illustrative design example, not output from an implemented detector:
+The following object is a representative host-test example. It is not captured
+output from the ESP32-C6:
 
 ```json
 {
@@ -85,14 +92,15 @@ The following object is an illustrative design example, not output from an imple
   "secondary_method": "sudden_drop",
   "state_before": "normal",
   "state_after": "low_light",
-  "cooldown_active": true
+  "cooldown_active": false
 }
 ```
 
 ## Field Semantics
 
 - `schema_version` begins at the provisional value `1.0` and changes when compatibility changes.
-- `event_id` increments for emitted events and supports traceability; restart behavior must be documented during implementation.
+- `event_id` increments only for emitted events. It starts at 1 by default and
+  restarts at the configured starting identifier for a new or reset formatter.
 - `timestamp_ms` is monotonic device time, not wall-clock time.
 - `detector_method` identifies the primary rule, such as `threshold` or `delta`.
 - `secondary_method` preserves an additional matching rule without replacing the primary anomaly type.
@@ -125,12 +133,15 @@ These are future gateway requirements only. No parser is implemented by this des
 - The selected Week 3 schema should be frozen before Week 4 gateway implementation.
 - Major changes and their reasons must be recorded in `LOG.md`.
 
-## Open Questions
+## Current Decisions and Open Questions
 
-- Is an `anomaly` event sufficient for the first implementation, or is `recovery` required?
-- Should `event_id` restart at zero or one after device reboot?
-- Should detector configuration always be included or only during development?
-- Should a single event represent multiple matching methods beyond `secondary_method`?
+- Only `anomaly` events are emitted by the first implementation; recovery
+  events remain optional.
+- `event_id` starts at 1 by default and restarts with a new formatter instance.
+- Detector configuration is included in every schema version 1.0 anomaly event.
+- One primary method and one optional `secondary_method` are retained by schema
+  version 1.0.
 - How should timer wrap and device restart be represented for gateway traceability?
 
-No schema behavior has been tested on hardware yet.
+The schema and compact serialization have passed host-side tests. No JSON event
+has been printed or captured from MicroPython hardware yet.
