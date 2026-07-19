@@ -7,8 +7,10 @@ The JSON-enabled version of
 photoresistor, detector, alert policy, local alarm, integration controller, and
 schema version 1.0 event formatter.
 
-This version is prepared for a later manual Thonny run. It has not been run on
-the ESP32-C6, and this document contains no invented MicroPython output.
+The first JSON-enabled run was performed manually on 2026-07-19. Its complete
+console output and mechanically parsed sample data are stored under
+`experiments/week3/`. A compact-output compatibility correction was prepared
+after that run and still requires a repeat capture.
 
 ## Output Separation
 
@@ -84,20 +86,54 @@ must be recorded from the actual run rather than predicted as evidence.
 
 Preparation date: 2026-07-19
 
-- New end-to-end event-pipeline tests: 11 passed
-- Previous tests: 113 still passed
-- Complete suite: 124 passed, 0 failed, 0 errors
+- Event-pipeline tests: 11 passed
+- Event-formatter tests after the compatibility correction: 38 passed
+- Detector and integration tests: 77 passed
+- Complete suite: 126 passed, 0 failed, 0 errors
 
 The host tests confirm event emission, normal and suppressed silence, cooldown
 repeat identifiers, recovery silence, compact JSON, local-alarm reporting, and
 a representative normal-to-low-to-recovery-to-high sequence.
 
+## First Real Capture
+
+Run date: 2026-07-19
+
+| Phase | Samples | Minimum | Maximum | Average | JSON events |
+|---|---:|---:|---:|---:|---:|
+| Ambient | 12 | 25942 | 26070 | 25992.7 | 0 |
+| Covered | 12 | 4305 | 4817 | 4529.0 | 2 |
+| Ambient recovery | 12 | 25286 | 25398 | 25339.3 | 0 |
+| Phone flashlight | 12 | 38105 | 38473 | 38274.3 | 2 |
+| Final ambient recovery | 12 | 25110 | 25318 | 25208.7 | 0 |
+
+Observed event sequence:
+
+1. `low_light`, entered anomaly, value 4817, timestamp 15547 ms;
+2. `low_light`, cooldown repeat, value 4497, timestamp 20815 ms;
+3. `high_light`, entered anomaly, value 38105, timestamp 37117 ms;
+4. `high_light`, cooldown repeat, value 38137, timestamp 42389 ms.
+
+All four event lines parsed as schema version 1.0 JSON and reported
+`local_alarm: true`. Normal, recovery, and suppressed readings produced no JSON
+line. Event identifiers were continuous from 1 through 4, acquisition continued
+after each event, and final cleanup completed without a console error.
+
+The capture exposed one compatibility issue: MicroPython `ujson.dumps()` used
+spaces after commas and colons by default. The events were valid one-line JSON,
+but not maximally compact. `AnomalyEventFormatter` now removes JSON whitespace
+outside string values in a MicroPython-compatible way. Two additional tests
+verify that spaces and escaped characters inside strings remain unchanged.
+
+The operator has not yet confirmed the physical LED colors and buzzer sounds
+for this specific run, so those evidence fields remain empty.
+
 ## Pending Validation
 
-- Run the JSON-enabled script manually in Thonny.
-- Capture real compact JSON lines from MicroPython.
+- Upload the corrected `event_formatter.py` and repeat the guided script.
+- Confirm that captured JSON contains no separator spaces.
+- Confirm physical RGB LED colors and buzzer sounds for the repeat run.
 - Validate repeated physical scenarios.
-- Save labeled raw Week 3 evidence.
 - Review results before closing Week 3.
 
 Gateway, LLM, whitelist, and gateway-to-board command work remain out of scope.

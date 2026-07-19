@@ -1141,3 +1141,75 @@ ESP32-C6.
 - No anomaly module, raw Week 2 data, gateway, LLM, or whitelist code was
   modified.
 - Week 3 remains in progress.
+
+## 2026-07-19
+
+### Goal
+
+Capture and review the first real schema version 1.0 anomaly JSON output from
+the ESP32-C6 guided test.
+
+### Work done
+
+- Ran the JSON-enabled guided script manually in Thonny.
+- Captured the complete console output with all five guided phases.
+- Saved the unchanged output as
+  `experiments/week3/console_output_2026-07-19_run1.txt`.
+- Parsed all 60 samples mechanically into
+  `experiments/week3/labeled_results_2026-07-19_run1.csv`.
+- Verified all four JSON event lines with a JSON parser.
+- Preserved physical RGB and buzzer observation fields as empty because the
+  submitted console output did not include those manual confirmations.
+- Identified and corrected compact-output behavior for MicroPython `ujson`.
+- Added two tests for spaces and escaped characters inside JSON strings.
+
+### Real capture summary
+
+- Ambient: 12 samples, 25942 to 26070, average 25992.7, no JSON events.
+- Covered: 12 samples, 4305 to 4817, average 4529.0, two low-light events.
+- Ambient recovery: 12 samples, 25286 to 25398, average 25339.3, no JSON
+  events.
+- Phone flashlight: 12 samples, 38105 to 38473, average 38274.3, two high-light
+  events.
+- Final ambient recovery: 12 samples, 25110 to 25318, average 25208.7, no JSON
+  events.
+- Event identifiers were 1, 2, 3, and 4.
+- Entry events occurred at covered sample 1 and flashlight sample 1.
+- Cooldown-repeat events occurred at sample 11 in both anomalous phases.
+- All events used schema version 1.0 and reported `local_alarm: true`.
+- Acquisition continued after each event and safety cleanup completed.
+
+### Compatibility issue and correction
+
+- The captured JSON objects were valid and one per line.
+- MicroPython `ujson.dumps()` inserted spaces after commas and colons, so the
+  representation was not maximally compact.
+- The formatter now removes JSON whitespace only outside strings after
+  serialization, preserving spaces and escapes inside string values.
+- Formatter tests: 38 passed.
+- Event-pipeline tests: 11 passed.
+- Detector and integration tests: 77 passed.
+- Complete suite: 126 passed, 0 failed, 0 errors.
+
+### Issues / open questions
+
+- The compact-output correction still requires a repeat MicroPython capture.
+- Physical RGB and buzzer observations for this specific run have not yet been
+  confirmed by the operator.
+- Repeated evidence is not complete until the corrected run is captured and
+  reviewed.
+
+### Next steps
+
+- Replace `/anomaly/event_formatter.py` on the ESP32-C6 with the corrected
+  version.
+- Repeat the same finite guided script in Thonny.
+- Confirm that JSON event lines contain no spaces after separators.
+- Confirm the observed RGB colors and buzzer tones.
+- Save the repeat as a separate Week 3 evidence run before closure.
+
+### Scope confirmation
+
+- No gateway, LLM, whitelist parser, or gateway-to-board command was added.
+- No Week 2 raw data was modified.
+- Week 3 remains in progress pending corrected repeat validation.

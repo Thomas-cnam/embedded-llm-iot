@@ -312,6 +312,21 @@ class AnomalyEventFormatterSerializationTests(unittest.TestCase):
         self.assertEqual(first["event_id"], 3)
         self.assertEqual(second["event_id"], 4)
 
+    def test_compaction_preserves_spaces_inside_strings(self):
+        formatter = AnomalyEventFormatter(schema_version="version 1.0 test")
+
+        payload = formatter.serialize_event(make_integration_result())
+
+        self.assertIn('"schema_version":"version 1.0 test"', payload)
+        self.assertEqual(json.loads(payload)["schema_version"], "version 1.0 test")
+
+    def test_compaction_preserves_escaped_string_characters(self):
+        formatter = AnomalyEventFormatter(schema_version='v "1" \\ test')
+
+        payload = formatter.serialize_event(make_integration_result())
+
+        self.assertEqual(json.loads(payload)["schema_version"], 'v "1" \\ test')
+
 
 class AnomalyEventFormatterValidationTests(unittest.TestCase):
     def test_integration_result_must_be_dictionary(self):

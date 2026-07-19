@@ -103,20 +103,35 @@ py -B -m unittest discover -s tests -p "test_*.py"
 
 Results:
 
-- Event-formatter tests: 36 passed, 0 failed, 0 errors
+- Event-formatter tests: 38 passed, 0 failed, 0 errors
 - Previous detector and integration tests: 77 still passed
-- Complete suite: 113 passed, 0 failed, 0 errors
+- Event-pipeline tests: 11 passed, 0 failed, 0 errors
+- Complete suite: 126 passed, 0 failed, 0 errors
 
 Covered scenarios include constructor validation, complete schema fields,
 incrementing identifiers, reset behavior, normal and suppressed results,
 compact JSON, real integration-controller results, copied history, and
 malformed nested data.
 
+## MicroPython Compatibility Finding
+
+The first real JSON-enabled run on 2026-07-19 showed that the available
+MicroPython `ujson.dumps()` inserted spaces after separators. The output was
+valid JSON but did not satisfy the intended compact representation.
+
+The formatter now removes whitespace only while outside JSON strings after
+serialization. Spaces and escaped characters inside strings remain unchanged.
+This keeps compatibility with `ujson` variants that do not provide a
+`separators` argument. The correction passes host tests but still requires a
+repeat MicroPython capture.
+
 ## Scope and Limitations
 
 - No ESP32-C6, COM3, Thonny, or `mpremote` access occurred.
-- No physical test or MicroPython console capture occurred.
-- No serial write or one-event-per-line output is implemented.
+- One MicroPython console capture exists, but it predates the compact-output
+  compatibility correction.
+- One-event-per-line printing is implemented by the finite guided script, not
+  by this pure formatter.
 - No gateway, LLM, or whitelist code is present.
 - Recovery events are not emitted; only requested anomaly alerts are formatted.
 - Schema version 1.0 remains provisional until real MicroPython JSON output is

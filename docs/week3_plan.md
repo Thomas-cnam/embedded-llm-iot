@@ -104,14 +104,16 @@ and real MicroPython capture remain pending.
 - [x] Add host-side end-to-end event-pipeline tests
 - [x] Prepare a labeled Week 3 evidence folder and CSV template
 - [x] Document the manual serial-event test procedure
-- [ ] Run the JSON-enabled script on the ESP32-C6
-- [ ] Capture real JSON event lines from Thonny
+- [x] Run the JSON-enabled script on the ESP32-C6
+- [x] Capture real JSON event lines from Thonny
 - [ ] Complete repeated physical scenarios
-- [ ] Save populated labeled Week 3 evidence
+- [x] Save populated labeled Week 3 evidence
 
-The JSON-enabled script and capture procedure were prepared on 2026-07-19.
-Eleven new pipeline tests pass, and the complete suite now contains 124 passing
-tests. No physical execution or real JSON capture occurred during preparation.
+The first JSON-enabled run captured 60 samples and four valid schema version
+1.0 events on 2026-07-19. It also exposed default `ujson` separator spaces. A
+minimal compatibility correction now passes 38 formatter tests, and the
+complete suite contains 126 passing tests. Compact MicroPython output and
+physical LED/buzzer observations require a repeat run.
 
 ### Verification
 
@@ -121,9 +123,9 @@ tests. No physical execution or real JSON capture occurred during preparation.
 - [x] Test transitions between conditions and detector reset behavior
 - [x] Confirm RGB LED and buzzer responses are finite and deterministic
 - [x] Confirm sensor acquisition continues after a physical alarm
-- [ ] Capture structured alerts from the MicroPython console
+- [x] Capture structured alerts from the MicroPython console
 - [x] Record test conditions, observations, and unresolved issues in `LOG.md`
-- [ ] Save labeled Week 3 test evidence without overwriting Week 2 raw data
+- [x] Save labeled Week 3 test evidence without overwriting Week 2 raw data
 
 ## Deliverables
 
@@ -138,7 +140,7 @@ tests. No physical execution or real JSON capture occurred during preparation.
 - [x] The detector runs on the ESP32-C6 using the confirmed GPIO 3 sensor input
 - [x] Local RGB LED and buzzer alarms work without the gateway or local LLM
 - [ ] Normal and anomalous scenarios produce reproducible, documented behavior
-- [ ] Each detected event emits parseable structured JSON with the required fields
+- [x] Each detected event emits parseable structured JSON with the required fields
 - [x] Detector limitations and calibration decisions are documented
 - [x] No gateway or LLM dependency has been introduced into the detector
 

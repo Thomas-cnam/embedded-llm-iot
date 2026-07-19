@@ -2,12 +2,8 @@
 
 try:
     import ujson as _json
-
-    _USING_UJSON = True
 except ImportError:
     import json as _json
-
-    _USING_UJSON = False
 
 
 class AnomalyEventFormatter:
@@ -266,9 +262,31 @@ class AnomalyEventFormatter:
         event = self.build_event(integration_result)
         if event is None:
             return None
-        if _USING_UJSON:
-            return _json.dumps(event)
-        return _json.dumps(event, separators=(",", ":"))
+        return self._compact_json(_json.dumps(event))
+
+    @staticmethod
+    def _compact_json(text):
+        """Remove JSON whitespace outside strings for ujson compatibility."""
+        compact = []
+        in_string = False
+        escaped = False
+
+        for character in text:
+            if in_string:
+                compact.append(character)
+                if escaped:
+                    escaped = False
+                elif character == "\\":
+                    escaped = True
+                elif character == '"':
+                    in_string = False
+            elif character == '"':
+                compact.append(character)
+                in_string = True
+            elif character not in " \t\r\n":
+                compact.append(character)
+
+        return "".join(compact)
 
     def reset(self):
         """Reset the next event identifier to its configured starting value."""

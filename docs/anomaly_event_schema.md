@@ -146,6 +146,8 @@ These are future gateway requirements only. No parser is implemented by this des
   version 1.0.
 - How should timer wrap and device restart be represented for gateway traceability?
 
-The schema, compact serialization, and end-to-end host pipeline have passed
-host-side tests. The JSON-enabled script is prepared, but no JSON event has
-been printed or captured from MicroPython hardware yet.
+The schema and end-to-end pipeline passed host-side tests. Four real schema
+version 1.0 events were captured from MicroPython on 2026-07-19 and parsed
+successfully. They contained separator spaces because of the device's `ujson`
+behavior, so a compatibility correction was added to the formatter. A repeat
+capture is required before compact hardware output is marked validated.

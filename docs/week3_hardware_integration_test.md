@@ -118,6 +118,7 @@ error occurs. Nothing is written to the ESP32-C6 filesystem.
 
 JSON formatting and serial event output were not part of the successful
 2026-07-17 run. The script was updated on 2026-07-19 to add those outputs while
-preserving the same five phases and cleanup. The JSON-enabled version has not
-yet been run on hardware, so real JSON capture and repeated physical evidence
-remain pending. See `week3_serial_event_test.md` for the next procedure.
+preserving the same five phases and cleanup. The first JSON-enabled run captured
+four valid events and completed safely. A compact-output compatibility issue
+was then corrected, so one repeat run and physical LED/buzzer confirmation are
+still pending. See `week3_serial_event_test.md` for details.
