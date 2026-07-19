@@ -62,19 +62,21 @@ Design decisions and all provisional values are documented in `anomaly_detector_
 - [x] Define a versioned structured JSON alert format
 - [x] Include sufficient alert fields for traceability, such as detector version, sensor value, state, and device uptime
 - [x] Ensure normal sensor output cannot accidentally produce malformed protocol messages
-- [ ] Implement JSON serialization and one-event-per-line serial output
+- [x] Implement JSON serialization and one-event-per-line serial output
 - [x] Add concise firmware documentation and usage instructions
 
 The alert policy and local-alarm integration passed host-side simulated tests,
 and the first physical ESP32-C6 integration test passed on 2026-07-17. The
 provisional thresholds, timing, RGB states, and buzzer behavior now have one
 successful real-board validation but still require repeated trials before they
-are treated as final. JSON formatting and serial output remain pending.
+are treated as final. JSON formatting and conditional one-event-per-line output
+are implemented and host-tested; real MicroPython capture remains pending.
 
 The finite guided hardware-integration script was run manually on 2026-07-17.
 Real sensor acquisition, RGB and buzzer behavior, cooldown, recovery, continued
 acquisition, and final cleanup were confirmed. JSON formatting and serial
-output remain pending.
+output were not part of that run. The JSON-enabled version now requires a new
+manual run and evidence capture.
 
 #### Pure anomaly-event formatting
 
@@ -90,8 +92,26 @@ output remain pending.
 
 The pure formatter passed 36 dedicated host tests on 2026-07-19, and all 77
 previous tests still pass. The complete suite now contains 113 passing tests.
-No JSON was printed on the ESP32-C6, so serial output and real MicroPython
-capture remain pending.
+No JSON was printed on the ESP32-C6, so execution of the prepared output path
+and real MicroPython capture remain pending.
+
+#### JSON-enabled guided pipeline
+
+- [x] Integrate `AnomalyEventFormatter` into the finite guided hardware script
+- [x] Print emitted events as standalone compact JSON lines
+- [x] Prefix diagnostic output so it is distinct from JSON event lines
+- [x] Emit no JSON for normal, recovery, or suppressed readings
+- [x] Add host-side end-to-end event-pipeline tests
+- [x] Prepare a labeled Week 3 evidence folder and CSV template
+- [x] Document the manual serial-event test procedure
+- [ ] Run the JSON-enabled script on the ESP32-C6
+- [ ] Capture real JSON event lines from Thonny
+- [ ] Complete repeated physical scenarios
+- [ ] Save populated labeled Week 3 evidence
+
+The JSON-enabled script and capture procedure were prepared on 2026-07-19.
+Eleven new pipeline tests pass, and the complete suite now contains 124 passing
+tests. No physical execution or real JSON capture occurred during preparation.
 
 ### Verification
 

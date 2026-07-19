@@ -46,9 +46,11 @@ Each phase starts with a five-second setup countdown and collects 12 readings
 at a provisional 500 ms interval. This duration allows the provisional
 five-second alert cooldown to be observed without creating an infinite test.
 
-For every reading, the console prints the ADC value, detector state, policy
-decision, and local-alarm action as human-readable text. It does not generate
-or print structured JSON events.
+For every reading, the updated script prints the ADC value, detector state,
+policy decision, and local-alarm action on a line prefixed with `DIAG`. When the
+policy requests an anomaly alert, it also prints one compact schema version 1.0
+JSON object on its own line. Normal, recovery, and suppressed readings produce
+no JSON event.
 
 ## Expected Provisional Behavior
 
@@ -114,5 +116,8 @@ error occurs. Nothing is written to the ESP32-C6 filesystem.
 - Final output cleanup: confirmed
 - Console or cleanup error: none observed
 
-JSON formatting and serial event output were not part of this test and remain
-pending.
+JSON formatting and serial event output were not part of the successful
+2026-07-17 run. The script was updated on 2026-07-19 to add those outputs while
+preserving the same five phases and cleanup. The JSON-enabled version has not
+yet been run on hardware, so real JSON capture and repeated physical evidence
+remain pending. See `week3_serial_event_test.md` for the next procedure.

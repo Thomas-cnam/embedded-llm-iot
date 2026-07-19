@@ -29,12 +29,18 @@ It requires the existing `/anomaly` and `/peripherals` packages to be uploaded
 to the device root before the script is opened and run manually in Thonny.
 
 The script covers ambient, covered, recovery, flashlight, and final recovery
-phases. It prints human-readable diagnostics only, never writes files on the
-board, and always attempts to turn the RGB LED and buzzer off. Do not save it as
-`main.py`. Preparation and expected observations are documented in
-`docs/week3_hardware_integration_test.md`.
+phases. Diagnostic lines begin with `DIAG`. A requested anomaly alert is
+printed as one compact JSON object on its own line; normal, recovery, and
+cooldown-suppressed readings produce no JSON event. The script never writes
+files on the board and always attempts to turn the RGB LED and buzzer off. Do
+not save it as `main.py`.
 
 The test was run manually in Thonny on 2026-07-17. Real GPIO 3 acquisition,
 normal and anomalous states, RGB LED behavior, bounded buzzer tones, cooldown,
 recovery, continued acquisition, and final cleanup were confirmed. Detailed
 results are recorded in `docs/week3_hardware_integration_test.md`.
+
+The JSON-enabled update was prepared on 2026-07-19 but has not yet been run on
+the ESP32-C6. Its manual procedure and evidence-capture rules are documented in
+`docs/week3_serial_event_test.md`. The earlier physical results must not be
+presented as JSON-output validation.

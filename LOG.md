@@ -1069,3 +1069,75 @@ without adding serial transport or accessing the ESP32-C6.
 - No serial transport, gateway, LLM, or whitelist parser was implemented.
 - No raw experimental data or existing detector behavior was modified.
 - Week 3 remains in progress.
+
+## 2026-07-19
+
+### Goal
+
+Integrate the existing anomaly-event formatter into the finite guided hardware
+test and prepare repeatable Week 3 JSON evidence capture without accessing the
+ESP32-C6.
+
+### Work done
+
+- Updated `firmware/tests/test_anomaly_hardware_integration.py` to instantiate
+  and use `AnomalyEventFormatter`.
+- Preserved the validated five-phase sensor and local-alarm sequence.
+- Prefixed all diagnostic messages with `DIAG`.
+- Added conditional standalone printing of compact JSON only when the policy
+  requests an anomaly alert.
+- Kept normal, recovery, and cooldown-suppressed readings free of JSON output.
+- Added 11 host-side end-to-end event-pipeline tests.
+- Created `docs/week3_serial_event_test.md` with the manual capture procedure.
+- Created `experiments/week3/` with evidence instructions and an empty labeled
+  CSV template.
+- Updated the test, schema, and Week 3 documentation.
+
+### Automated test result
+
+- New event-pipeline tests: 11 passed, 0 failed, 0 errors.
+- Previous tests: 113 still passed.
+- Complete suite: 124 passed, 0 failed, 0 errors.
+- Pipeline command:
+  `py -B -m unittest discover -s tests -p "test_anomaly_event_pipeline.py" -v`
+- Complete-suite command:
+  `py -B -m unittest discover -s tests -p "test_*.py"`
+- Result: `OK`.
+
+### Observations
+
+- The real project detector, policy, integration controller, and formatter work
+  together in host-side simulated sequences.
+- Event identifiers increment only for emitted alerts.
+- Normal, recovery, and suppressed results return no JSON payload.
+- Cooldown repeats and anomaly changes produce new compact events.
+- The `local_alarm` event field reflects whether the injected alarm controller
+  was triggered.
+- Formatting logic remains in the existing formatter rather than being
+  duplicated in the hardware script.
+
+### Issues / open questions
+
+- The updated script has not been imported or executed on MicroPython yet.
+- No real JSON line has been captured from Thonny.
+- The exact event sequence depends on physical sensor transitions and must not
+  be predicted as evidence.
+- Repeated physical scenarios and populated Week 3 evidence remain pending.
+
+### Next steps
+
+- Upload the current `/anomaly` and `/peripherals` packages to the ESP32-C6.
+- Run the updated finite script manually in Thonny.
+- Preserve the complete console output and populate a dated copy of the Week 3
+  CSV template using only observed values.
+- Validate that diagnostic and JSON lines remain clearly separated.
+- Keep gateway and LLM work out of scope until real firmware JSON output is
+  reviewed.
+
+### Scope confirmation
+
+- COM3 was not opened and no hardware code was run or uploaded.
+- No real serial output or physical observation was invented.
+- No anomaly module, raw Week 2 data, gateway, LLM, or whitelist code was
+  modified.
+- Week 3 remains in progress.

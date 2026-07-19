@@ -5,8 +5,10 @@
 This document defines the planned JSON event format emitted by the ESP32-C6 anomaly detector over USB serial. The format is designed for the future Week 4 Python gateway.
 
 Schema version 1.0 is implemented by the pure
-`AnomalyEventFormatter` and validated with host-side tests. Serial output,
-real MicroPython JSON capture, and the gateway parser are not implemented yet.
+`AnomalyEventFormatter` and validated with host-side tests. The finite guided
+hardware script now conditionally prints formatted events one object per line,
+but this update has not been run on MicroPython. Real JSON capture and the
+gateway parser are not implemented or validated yet.
 
 ## Transport Rule
 
@@ -16,9 +18,10 @@ real MicroPython JSON capture, and the gateway parser are not implemented yet.
 - Diagnostic text, if retained during development, must be clearly separated from JSON event lines
 - The gateway must later ignore non-JSON lines safely
 
-The formatter currently returns compact JSON without a newline. A future
-transport layer will append one newline and print exactly one object per event.
-Pretty-printed multi-line JSON must not be used on the serial transport.
+The formatter returns compact JSON without a newline. The guided hardware
+script prints that string only when an alert is emitted; `print()` adds one line
+ending. Diagnostic lines begin with `DIAG`, while JSON event lines contain only
+the object. Pretty-printed multi-line JSON must not be used.
 
 ## Proposed Event Types
 
@@ -143,5 +146,6 @@ These are future gateway requirements only. No parser is implemented by this des
   version 1.0.
 - How should timer wrap and device restart be represented for gateway traceability?
 
-The schema and compact serialization have passed host-side tests. No JSON event
-has been printed or captured from MicroPython hardware yet.
+The schema, compact serialization, and end-to-end host pipeline have passed
+host-side tests. The JSON-enabled script is prepared, but no JSON event has
+been printed or captured from MicroPython hardware yet.
