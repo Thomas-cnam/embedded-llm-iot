@@ -1,0 +1,126 @@
+>>> %Run -c $EDITOR_CONTENT
+
+MPY: soft reboot
+DIAG ESP32-C6 anomaly hardware integration test
+DIAG Photoresistor: GPIO 3
+DIAG Buzzer: GPIO 5
+DIAG RGB LED: GPIO 21 11 10
+DIAG RGB ACTIVE_LOW = False
+DIAG Sample interval: 500 ms
+DIAG Samples per phase: 12
+DIAG Diagnostic lines start with DIAG.
+DIAG Emitted anomaly events are compact JSON-only lines.
+
+DIAG Phase 1 of 5 : ambient
+DIAG Leave the photoresistor exposed to normal room light.
+DIAG Keep the setup steady while readings are collected.
+DIAG Starting in 5 second(s)...
+DIAG Starting in 4 second(s)...
+DIAG Starting in 3 second(s)...
+DIAG Starting in 2 second(s)...
+DIAG Starting in 1 second(s)...
+DIAG Sample 1 of 12 value= 16852 state= normal decision= normal alarm= show_normal
+DIAG Sample 2 of 12 value= 16868 state= normal decision= normal alarm= none
+DIAG Sample 3 of 12 value= 16852 state= normal decision= normal alarm= none
+DIAG Sample 4 of 12 value= 16852 state= normal decision= normal alarm= none
+DIAG Sample 5 of 12 value= 16852 state= normal decision= normal alarm= none
+DIAG Sample 6 of 12 value= 16868 state= normal decision= normal alarm= none
+DIAG Sample 7 of 12 value= 16596 state= normal decision= normal alarm= none
+DIAG Sample 8 of 12 value= 16147 state= normal decision= normal alarm= none
+DIAG Sample 9 of 12 value= 16676 state= normal decision= normal alarm= none
+DIAG Sample 10 of 12 value= 16756 state= normal decision= normal alarm= none
+DIAG Sample 11 of 12 value= 16804 state= normal decision= normal alarm= none
+DIAG Sample 12 of 12 value= 16836 state= normal decision= normal alarm= none
+
+DIAG Phase 2 of 5 : covered
+DIAG Cover the photoresistor completely with an opaque object.
+DIAG Keep the setup steady while readings are collected.
+DIAG Starting in 5 second(s)...
+DIAG Starting in 4 second(s)...
+DIAG Starting in 3 second(s)...
+DIAG Starting in 2 second(s)...
+DIAG Starting in 1 second(s)...
+DIAG Sample 1 of 12 value= 1760 state= low_light decision= entered_anomaly alarm= trigger_low_light
+{"sensor":"photoresistor","anomaly_type":"low_light","previous_value":16836,"high_threshold":32000,"delta_threshold":8000,"delta":-15076,"secondary_method":"sudden_drop","detector_method":"threshold","event_id":1,"state_before":"normal","timestamp_ms":15547,"low_threshold":5000,"state_after":"low_light","cooldown_active":false,"value":1760,"history":[16676,16756,16804,16836,1760],"local_alarm":true,"schema_version":"1.0","event_type":"anomaly"}
+DIAG Sample 2 of 12 value= 3232 state= low_light decision= suppressed_same_anomaly alarm= none
+DIAG Sample 3 of 12 value= 3136 state= low_light decision= suppressed_same_anomaly alarm= none
+DIAG Sample 4 of 12 value= 3056 state= low_light decision= suppressed_same_anomaly alarm= none
+DIAG Sample 5 of 12 value= 3056 state= low_light decision= suppressed_same_anomaly alarm= none
+DIAG Sample 6 of 12 value= 3104 state= low_light decision= suppressed_same_anomaly alarm= none
+DIAG Sample 7 of 12 value= 3120 state= low_light decision= suppressed_same_anomaly alarm= none
+DIAG Sample 8 of 12 value= 3056 state= low_light decision= suppressed_same_anomaly alarm= none
+DIAG Sample 9 of 12 value= 3104 state= low_light decision= suppressed_same_anomaly alarm= none
+DIAG Sample 10 of 12 value= 3104 state= low_light decision= suppressed_same_anomaly alarm= none
+DIAG Sample 11 of 12 value= 3056 state= low_light decision= cooldown_repeat alarm= trigger_low_light
+{"sensor":"photoresistor","anomaly_type":"low_light","previous_value":3104,"high_threshold":32000,"delta_threshold":8000,"delta":-48,"secondary_method":null,"detector_method":"threshold","event_id":2,"state_before":"low_light","timestamp_ms":20815,"low_threshold":5000,"state_after":"low_light","cooldown_active":false,"value":3056,"history":[3120,3056,3104,3104,3056],"local_alarm":true,"schema_version":"1.0","event_type":"anomaly"}
+DIAG Sample 12 of 12 value= 3104 state= low_light decision= suppressed_same_anomaly alarm= none
+
+DIAG Phase 3 of 5 : ambient recovery
+DIAG Uncover the photoresistor and restore normal room light.
+DIAG Keep the setup steady while readings are collected.
+DIAG Starting in 5 second(s)...
+DIAG Starting in 4 second(s)...
+DIAG Starting in 3 second(s)...
+DIAG Starting in 2 second(s)...
+DIAG Starting in 1 second(s)...
+DIAG Sample 1 of 12 value= 16564 state= sudden_rise decision= recovered alarm= show_normal
+DIAG Sample 2 of 12 value= 16596 state= normal decision= normal alarm= none
+DIAG Sample 3 of 12 value= 16580 state= normal decision= normal alarm= none
+DIAG Sample 4 of 12 value= 16612 state= normal decision= normal alarm= none
+DIAG Sample 5 of 12 value= 16612 state= normal decision= normal alarm= none
+DIAG Sample 6 of 12 value= 16596 state= normal decision= normal alarm= none
+DIAG Sample 7 of 12 value= 16628 state= normal decision= normal alarm= none
+DIAG Sample 8 of 12 value= 16660 state= normal decision= normal alarm= none
+DIAG Sample 9 of 12 value= 16660 state= normal decision= normal alarm= none
+DIAG Sample 10 of 12 value= 16628 state= normal decision= normal alarm= none
+DIAG Sample 11 of 12 value= 16628 state= normal decision= normal alarm= none
+DIAG Sample 12 of 12 value= 16644 state= normal decision= normal alarm= none
+
+DIAG Phase 4 of 5 : phone flashlight
+DIAG Direct a phone flashlight steadily at the photoresistor.
+DIAG Keep the setup steady while readings are collected.
+DIAG Starting in 5 second(s)...
+DIAG Starting in 4 second(s)...
+DIAG Starting in 3 second(s)...
+DIAG Starting in 2 second(s)...
+DIAG Starting in 1 second(s)...
+DIAG Sample 1 of 12 value= 38937 state= high_light decision= entered_anomaly alarm= trigger_high_light
+{"sensor":"photoresistor","anomaly_type":"high_light","previous_value":16644,"high_threshold":32000,"delta_threshold":8000,"delta":22293,"secondary_method":"sudden_rise","detector_method":"threshold","event_id":3,"state_before":"normal","timestamp_ms":37127,"low_threshold":5000,"state_after":"high_light","cooldown_active":false,"value":38937,"history":[16660,16628,16628,16644,38937],"local_alarm":true,"schema_version":"1.0","event_type":"anomaly"}
+DIAG Sample 2 of 12 value= 39065 state= high_light decision= suppressed_same_anomaly alarm= none
+DIAG Sample 3 of 12 value= 38921 state= high_light decision= suppressed_same_anomaly alarm= none
+DIAG Sample 4 of 12 value= 38857 state= high_light decision= suppressed_same_anomaly alarm= none
+DIAG Sample 5 of 12 value= 38857 state= high_light decision= suppressed_same_anomaly alarm= none
+DIAG Sample 6 of 12 value= 38457 state= high_light decision= suppressed_same_anomaly alarm= none
+DIAG Sample 7 of 12 value= 38361 state= high_light decision= suppressed_same_anomaly alarm= none
+DIAG Sample 8 of 12 value= 38521 state= high_light decision= suppressed_same_anomaly alarm= none
+DIAG Sample 9 of 12 value= 37593 state= high_light decision= suppressed_same_anomaly alarm= none
+DIAG Sample 10 of 12 value= 41594 state= high_light decision= suppressed_same_anomaly alarm= none
+DIAG Sample 11 of 12 value= 41578 state= high_light decision= cooldown_repeat alarm= trigger_high_light
+{"sensor":"photoresistor","anomaly_type":"high_light","previous_value":41594,"high_threshold":32000,"delta_threshold":8000,"delta":-16,"secondary_method":null,"detector_method":"threshold","event_id":4,"state_before":"high_light","timestamp_ms":42396,"low_threshold":5000,"state_after":"high_light","cooldown_active":false,"value":41578,"history":[38361,38521,37593,41594,41578],"local_alarm":true,"schema_version":"1.0","event_type":"anomaly"}
+DIAG Sample 12 of 12 value= 36312 state= high_light decision= suppressed_same_anomaly alarm= none
+
+DIAG Phase 5 of 5 : final ambient recovery
+DIAG Remove the flashlight and restore normal room light.
+DIAG Keep the setup steady while readings are collected.
+DIAG Starting in 5 second(s)...
+DIAG Starting in 4 second(s)...
+DIAG Starting in 3 second(s)...
+DIAG Starting in 2 second(s)...
+DIAG Starting in 1 second(s)...
+DIAG Sample 1 of 12 value= 16820 state= sudden_drop decision= recovered alarm= show_normal
+DIAG Sample 2 of 12 value= 16852 state= normal decision= normal alarm= none
+DIAG Sample 3 of 12 value= 16868 state= normal decision= normal alarm= none
+DIAG Sample 4 of 12 value= 16900 state= normal decision= normal alarm= none
+DIAG Sample 5 of 12 value= 16932 state= normal decision= normal alarm= none
+DIAG Sample 6 of 12 value= 16948 state= normal decision= normal alarm= none
+DIAG Sample 7 of 12 value= 16964 state= normal decision= normal alarm= none
+DIAG Sample 8 of 12 value= 16980 state= normal decision= normal alarm= none
+DIAG Sample 9 of 12 value= 16948 state= normal decision= normal alarm= none
+DIAG Sample 10 of 12 value= 16932 state= normal decision= normal alarm= none
+DIAG Sample 11 of 12 value= 16964 state= normal decision= normal alarm= none
+DIAG Sample 12 of 12 value= 16980 state= normal decision= normal alarm= none
+
+DIAG Guided anomaly hardware integration sequence completed.
+DIAG Review physical behavior and capture JSON lines before validation.
+DIAG Safety cleanup complete: RGB LED and buzzer are off.
+>>>

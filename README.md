@@ -59,10 +59,14 @@ The repository should be shared with GitHub user: `matusformanek`.
 - Week 2 hardware consolidation: completed
 - Main peripherals verified in MicroPython
 - Photoresistor baseline measurements recorded
-- Week 3 edge anomaly detector: implemented and host-tested
+- Week 3 edge anomaly detector: completed
 - Corrected RGB mapping: red GPIO 21, green GPIO 11, blue GPIO 10
-- Corrected RGB color revalidation on the ESP32-C6: pending
+- Corrected RGB mapping physically revalidated
+- Structured JSON events captured and validated
 - Gateway and local LLM work: not started
+
+Week 3 evidence is summarized in [docs/week3_results.md](docs/week3_results.md)
+and stored under [experiments/week3](experiments/week3/README.md).
 
 ## Project Planning
 

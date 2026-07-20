@@ -69,14 +69,15 @@ The alert policy and local-alarm integration passed host-side simulated tests,
 and the first physical ESP32-C6 integration test ran on 2026-07-17. Detector,
 sensor, buzzer, cooldown, and cleanup behavior have real-board evidence. The
 supervisor later corrected the RGB red/blue mapping, so the corrected named RGB
-states require a short physical repeat before validation.
+states required a short physical repeat. That repeat was completed manually on
+2026-07-20 with the corrected mapping.
 
 The finite guided hardware-integration script was run manually on 2026-07-17.
 Real sensor acquisition, buzzer behavior, cooldown, recovery, continued
 acquisition, and final cleanup were confirmed. The historical RGB observations
 used the old red/blue interpretation and are preserved, but corrected color
-validation remains pending. JSON formatting and serial output were not part of
-that run.
+validation was subsequently completed. JSON formatting and serial output were
+validated in the two complete captures documented in `week3_results.md`.
 
 #### Pure anomaly-event formatting
 
@@ -92,10 +93,10 @@ that run.
 
 The pure formatter passes 38 dedicated host tests, the 77 detector and
 integration tests still pass, and the 11 event-pipeline tests pass. The complete
-suite now contains 129 passing tests after adding RGB pin-mapping regression
-coverage.
+suite now contains 142 passing tests after adding RGB pin-mapping and Week 3
+evidence-validation coverage.
 The formatter now has two real MicroPython captures. The second capture
-validates compact output; physical observation confirmation remains pending.
+validates compact output; corrected physical RGB observations are confirmed.
 
 #### JSON-enabled guided pipeline
 
@@ -120,7 +121,7 @@ then validated in run 2.
 The corrected repeat run captured another 60 samples and four events. All
 events were compact and parseable, and the expected normal, low-light,
 high-light, suppression, cooldown, and recovery behavior repeated. Explicit
-physical LED and buzzer confirmation for this run remains pending.
+physical LED and buzzer behavior was confirmed by the operator.
 
 ### Verification
 
@@ -129,7 +130,7 @@ physical LED and buzzer confirmation for this run remains pending.
 - [x] Test strong-light events on the real board
 - [x] Test transitions between conditions and detector reset behavior
 - [x] Confirm buzzer responses are finite and deterministic
-- [ ] Revalidate RGB LED colors with red GPIO 21, green GPIO 11, and blue GPIO 10
+- [x] Revalidate RGB LED colors with red GPIO 21, green GPIO 11, and blue GPIO 10
 - [x] Confirm sensor acquisition continues after a physical alarm
 - [x] Capture structured alerts from the MicroPython console
 - [x] Record test conditions, observations, and unresolved issues in `LOG.md`
@@ -147,7 +148,7 @@ physical LED and buzzer confirmation for this run remains pending.
 
 - [x] The detector runs on the ESP32-C6 using the confirmed GPIO 3 sensor input
 - [x] Local buzzer alarms work without the gateway or local LLM
-- [ ] Corrected local RGB LED colors are physically validated without the gateway or local LLM
+- [x] Corrected local RGB LED colors are physically validated without the gateway or local LLM
 - [x] Normal and anomalous scenarios produce reproducible, documented behavior
 - [x] Each detected event emits parseable structured JSON with the required fields
 - [x] Detector limitations and calibration decisions are documented
@@ -157,13 +158,23 @@ physical LED and buzzer confirmation for this run remains pending.
 
 Prefer the simplest detector supported by measured data. If Week 3 evidence shows that the initial method is unstable, adjust filtering or persistence rules and record the reason in `LOG.md`. Do not expand to optional sensors until the required photoresistor path is reliable.
 
+Moving-average deviation was not implemented because threshold and delta
+detection were stable during the documented Week 3 runs.
+
 ## RGB Mapping Correction
 
 On 2026-07-20, the supervisor confirmed that the PCB red and blue silkscreen
 labels are swapped. Current code uses red GPIO 21, green GPIO 11, and blue GPIO
 10. Earlier raw output and journal entries remain unchanged as historical
 evidence. Photoresistor, buzzer, detector, cooldown, cleanup, and JSON results
-are unaffected; corrected named RGB colors require manual revalidation.
+are unaffected. Corrected named RGB colors were manually revalidated on
+2026-07-20.
+
+## Completion
+
+Week 3 is complete. Two raw 60-reading runs, 120 labeled rows, eight valid
+schema version 1.0 events, corrected RGB observations, buzzer behavior,
+cooldown, recovery, and cleanup are documented in `week3_results.md`.
 
 ## Out of Scope
 

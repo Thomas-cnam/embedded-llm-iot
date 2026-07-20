@@ -5,6 +5,19 @@ JSON-event tests.
 
 ## Recorded Runs
 
+### Final corrected-mapping validation
+
+- Raw run 1: `raw_console_run_01.txt`
+- Raw run 2: `raw_console_run_02.txt`
+- Combined labeled rows: `labeled_results.csv`
+- Readings: 60 per run, 120 total
+- JSON events: 4 per run, 8 total
+
+Both raw files retain the actual executed output. The planned `TEST_START` and
+`TEST_END` markers were not printed; the `DIAG` introduction and final cleanup
+line provide the real boundaries. A JSON event belongs to a reading only when
+it immediately follows that reading's `DIAG Sample` line.
+
 ### 2026-07-19 run 1
 
 - Raw console output: `console_output_2026-07-19_run1.txt`

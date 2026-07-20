@@ -1327,3 +1327,51 @@ hardware evidence and current detector behavior.
 - Record the actual physical observations before marking corrected RGB behavior
   as validated.
 - Do not start gateway or local LLM work as part of this correction.
+
+## 2026-07-20
+
+### Goal
+
+Physically revalidate the corrected RGB mapping and complete the repeated Week
+3 structured-event validation.
+
+### Work done
+
+- Uploaded the corrected RGB peripheral implementation for manual testing.
+- Revalidated red, green, blue, white, and off states.
+- Ran the complete five-phase Week 3 scenario twice.
+- Saved both unedited Thonny console outputs.
+- Validated all real JSON event lines and schema version 1.0 identifiers.
+- Created the 120-row labeled Week 3 result dataset.
+- Added a reproducible evidence validator and host-side tests.
+- Updated Week 3 documentation and milestone status.
+
+### Observations
+
+- Each run contained 60 readings and four JSON events; totals were 120 readings
+  and eight events.
+- Event IDs were 1, 2, 3, and 4 in each run.
+- Each run emitted two `low_light` and two `high_light` events.
+- All eight JSON lines parsed successfully; parse failures: 0.
+- Ambient and recovery readings emitted no JSON.
+- Same-anomaly readings were suppressed, with one controlled cooldown repeat
+  in each anomalous phase.
+- Corrected RGB observations were green for normal/recovery, red for low light,
+  and blue for high light.
+- Expected short buzzer tones and final cleanup were manually confirmed.
+- No critical traceback occurred.
+- Evidence-validator tests: 13 passed.
+- Complete automated suite: 142 passed, 0 failed, 0 errors.
+
+### Issues / open questions
+
+- The script omitted the planned `TEST_START` and `TEST_END` markers; the real
+  `DIAG` start and cleanup lines were used as unambiguous boundaries.
+- Thresholds remain the tested Week 3 configuration, not final accuracy claims.
+- Final accuracy metrics remain Week 7 work.
+
+### Next steps
+
+- Begin Week 4 planning for the Python serial gateway.
+- Preserve the Week 3 raw evidence without modification.
+- Keep deterministic local detection independent from the future LLM.

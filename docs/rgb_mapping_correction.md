@@ -34,8 +34,28 @@ not distinguish the swapped red and blue channels.
 5. Record only the observed result in `LOG.md` and update the hardware
    checklist.
 
-Codex did not run the ESP32-C6 or perform this physical revalidation. The
-corrected mapping remains pending manual confirmation.
+Test date: 2026-07-20
+
+The operator completed the standalone test and manually confirmed red, green,
+blue, white, and off. The operator also confirmed red for covered low-light
+alerts and blue for flashlight high-light alerts during both guided runs.
+
+- [x] Standalone RGB test completed
+- [x] Physical red confirmed
+- [x] Physical green confirmed
+- [x] Physical blue confirmed
+- [x] Physical white confirmed
+- [x] Off state confirmed
+- [x] Covered scenario produced physical red
+- [x] Flashlight scenario produced physical blue
+- [x] Buzzer behavior remained correct
+- [x] Final cleanup completed
+- [x] Corrected evidence saved
+
+Evidence: `experiments/week3/raw_console_run_01.txt`,
+`experiments/week3/raw_console_run_02.txt`, and `docs/week3_results.md`.
+Codex did not operate the ESP32-C6; these conclusions use the operator's manual
+observations.
 
 ## Host-Side Verification
 

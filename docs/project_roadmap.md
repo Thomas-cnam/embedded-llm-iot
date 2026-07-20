@@ -6,7 +6,7 @@ This roadmap translates the internship assignment into practical weekly mileston
 
 - [x] Week 1 — Repository setup and initial hardware bring-up
 - [x] Week 2 — Hardware consolidation and photoresistor baseline
-- [ ] Week 3 — Edge anomaly detector
+- [x] Week 3 — Edge anomaly detector
 - [ ] Week 4 — Python gateway and first local LLM response
 - [ ] Week 5 — Prompt engineering and safety parser
 - [ ] Week 6 — Safe end-to-end integration
@@ -19,7 +19,7 @@ This roadmap translates the internship assignment into practical weekly mileston
 | Period | Milestone | Main outcome | Status |
 |---|---|---|---|
 | Weeks 1–2 | M1.1 Hardware bring-up | Main peripherals verified and sensor baseline recorded | Completed |
-| Week 3 | M1.2 Edge anomaly detector | Detector triggers local alarm and emits structured alert | Pending |
+| Week 3 | M1.2 Edge anomaly detector | Detector triggers local alarm and emits structured alert | Completed |
 | Week 4 | M1.3 Gateway and local LLM setup | First ESP32 alert processed by a local model | Pending |
 | Week 5 | M1.4A Prompt engineering and safety parser | Stable prompts, schema, whitelist, and validation | Pending |
 | Week 6 | M1.4B Safe end-to-end integration | Complete safe pipeline and actuation experiments | Pending |
@@ -28,6 +28,10 @@ This roadmap translates the internship assignment into practical weekly mileston
 | August 26–29 | Safety buffer | Corrections and final submission only | Pending |
 
 ## Target Architecture
+
+Week 3 milestone note: the real local alarm and corrected RGB mapping were
+validated, compact JSON events were captured, and two repeated raw evidence
+runs were saved. Week 4 and later work remains pending.
 
 ```text
 Photoresistor on ESP32-C6
