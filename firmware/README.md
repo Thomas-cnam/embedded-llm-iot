@@ -13,7 +13,7 @@ This folder contains MicroPython code for the ESP32-C6 firmware.
 
 - Photoresistor on GPIO 3
 - Passive buzzer on GPIO 5
-- RGB LED on GPIO 10, GPIO 11, and GPIO 21 with `ACTIVE_LOW = False`
+- RGB LED: red GPIO 21, green GPIO 11, blue GPIO 10 with `ACTIVE_LOW = False`
 - Serial LEDs on GPIO 8 with `LED_COUNT = 3`
 - Optional HC-SR04 ultrasonic sensor
 - Optional MPU6050 motion sensor
@@ -34,13 +34,15 @@ The reusable modules are prepared for firmware consolidation but have not yet be
 - Host-side tests are located in `tests/test_anomaly_detector.py`,
   `tests/test_anomaly_integration.py`, and
   `tests/test_anomaly_event_formatter.py`.
-- Physical ESP32-C6 detector and local-alarm integration passed its first
-  guided test on 2026-07-17.
+- Physical ESP32-C6 detector and local-alarm integration completed its first
+  guided test on 2026-07-17. A later supervisor correction swapped the red and
+  blue pin interpretation, so the corrected RGB colors require revalidation.
 - The pure formatter passed host-side tests on 2026-07-19.
 - One-event-per-line serial output and real MicroPython JSON capture remain
   pending.
-- Local-alarm mappings, thresholds, and timing values have one successful
-  hardware validation but remain provisional until repeated trials.
+- Detector thresholds, timing, buzzer behavior, and sensor acquisition have
+  real-board evidence. Corrected RGB color mapping remains pending physical
+  revalidation.
 
 Run the simulated host-side tests from the repository root:
 

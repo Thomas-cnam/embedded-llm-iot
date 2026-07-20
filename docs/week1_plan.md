@@ -17,6 +17,16 @@
 - [x] Test serial LED strip
 - [x] Record all results in `LOG.md`
 
+## RGB mapping correction
+
+The Week 1 RGB test remains part of the historical bring-up record. On
+2026-07-20, the supervisor confirmed that the PCB red and blue silkscreen labels
+are swapped. The corrected mapping is red GPIO 21, green GPIO 11, and blue GPIO
+10. Named red/blue behavior must be physically revalidated with the corrected
+script; this does not alter the other Week 1 test results.
+
+- [ ] Revalidate RGB LED colors with the supervisor-confirmed mapping
+
 ## Notes
 
 - Photoresistor test repeated in Thonny with better sensor coverage; result is now validated as working.

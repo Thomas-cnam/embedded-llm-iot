@@ -2,7 +2,7 @@
 
 ## Current division of work
 
-### Student 1 - Firmware and hardware bring-up
+## Thomas - Firmware and initial hardware bring-up
 
 Responsibilities:
 
@@ -15,7 +15,7 @@ Responsibilities:
 - Firmware documentation
 - Updating hardware test results in LOG.md
 
-### Student 2 - Gateway, LLM and benchmarking
+## Maxime - Gateway, LLM integration, benchmarking, and project continuation
 
 Responsibilities:
 
@@ -53,3 +53,8 @@ Both students are responsible for:
 ## Notes
 
 This organization may evolve during the internship depending on progress, hardware issues, or changes in the project direction.
+
+Thomas is leaving the internship on Saturday. Until that date, Thomas and
+Maxime are working together. Maxime will then continue the remaining
+implementation, experiments, documentation, report, and presentation work
+through the end of August.

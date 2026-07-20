@@ -68,9 +68,17 @@ Observed PCB labels:
 - HC-SR04: TR(15), EC(23)
 - I2C: SDA(6), SCL(7)
 
+Supervisor correction received on 2026-07-20:
+
+- The PCB red and blue silkscreen labels are swapped.
+- Correct RGB mapping: red GPIO 21, green GPIO 11, blue GPIO 10.
+- The printed `R(10)` and `B(21)` labels remain recorded above as physical
+  observations, but they must not be used as the functional color mapping.
+
 Additional observations:
 
 - The serial LED area contains 3 visible onboard LEDs.
-- RGB active high/low behavior still needs to be verified by test.
+- RGB active-high behavior (`ACTIVE_LOW = False`) was observed previously, but
+  the named red and blue channels require a repeat test with the corrected pins.
 - Serial LED protocol still needs to be verified by test.
 - No peripheral test has been run yet.

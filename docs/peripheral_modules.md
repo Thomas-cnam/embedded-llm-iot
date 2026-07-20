@@ -10,7 +10,7 @@ The existing self-contained scripts in `firmware/tests/` remain the verified ref
 |---|---|---|
 | Photoresistor | `firmware/peripherals/photoresistor.py` | GPIO 3, PCB label `PHOTO(3)` |
 | Passive buzzer | `firmware/peripherals/buzzer.py` | GPIO 5, PCB label `BUZZER(5)` |
-| RGB LED | `firmware/peripherals/rgb_led.py` | Red GPIO 10, green GPIO 11, blue GPIO 21 |
+| RGB LED | `firmware/peripherals/rgb_led.py` | Red GPIO 21, green GPIO 11, blue GPIO 10; supervisor-confirmed correction |
 | Serial LEDs | `firmware/peripherals/serial_led.py` | GPIO 8, `LED_COUNT = 3` |
 
 ## `Photoresistor`
@@ -65,7 +65,10 @@ strip.off()
 
 ## Validation Status
 
-These modules are prepared for reuse but have not yet been independently validated on hardware. The verified reference remains the Week 1 test scripts:
+These modules are prepared for reuse but have not yet been independently
+validated on hardware. The RGB module now uses the supervisor-confirmed
+mapping, but that corrected mapping still requires a short physical repeat
+test. The self-contained scripts remain the manual hardware reference:
 
 - `firmware/tests/test_photoresistor.py`
 - `firmware/tests/test_buzzer.py`

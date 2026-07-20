@@ -7,7 +7,9 @@ MicroPython test that connects the real photoresistor to the existing detector,
 alert policy, integration controller, RGB LED, and buzzer modules.
 
 The script was run manually on the ESP32-C6 in Thonny on 2026-07-17. The
-operator confirmed the expected physical RGB LED states and buzzer tones.
+operator confirmed physical LED changes and buzzer tones. A later supervisor
+correction showed that the red and blue channels had been interpreted in
+reverse, so corrected named RGB colors require a repeat test.
 
 ## Confirmed Hardware
 
@@ -15,9 +17,9 @@ operator confirmed the expected physical RGB LED states and buzzer tones.
 |---|---|
 | Photoresistor | GPIO 3 |
 | Passive buzzer | GPIO 5 |
-| RGB red channel | GPIO 10 |
+| RGB red channel | GPIO 21 |
 | RGB green channel | GPIO 11 |
-| RGB blue channel | GPIO 21 |
+| RGB blue channel | GPIO 10 |
 | RGB polarity | `active_low=False` |
 
 The serial LED strip is intentionally not used.
@@ -63,12 +65,19 @@ no JSON event.
 - Final recovery should restore green and silence the buzzer.
 - Repeated readings of the same anomaly should be suppressed during cooldown.
 
-These provisional behaviors were checked during the manual test described
-below.
+These are the current expected behaviors. The 2026-07-17 run predates the RGB
+mapping correction, so only a new physical repeat can validate the corrected
+red and blue colors.
 
-## Manual Test Results
+## Historical Manual Test Results
 
 Test date: 2026-07-17
+
+The table below preserves what was reported at the time under the original
+red GPIO 10 / blue GPIO 21 interpretation. The supervisor subsequently
+confirmed that those PCB labels are swapped. Green observations, buzzer output,
+sensor behavior, detector decisions, cooldown, recovery, and cleanup remain
+informative; the named red and blue observations are superseded.
 
 | Phase | ADC observations | Detector and policy result | Physical observation |
 |---|---|---|---|
@@ -89,8 +98,8 @@ provisional five-second cooldown. Acquisition continued after every tone.
 
 Both ambient-recovery phases restored the normal state. The sequence completed
 without an exception, and the final safety cleanup turned the RGB LED and
-buzzer off. The operator confirmed that the displayed LED colors and audible
-tones matched the planned mappings.
+buzzer off. Audible tones matched the plan. The historical named red and blue
+observations require revalidation with the corrected mapping.
 
 ## Timestamp Handling
 
@@ -108,7 +117,8 @@ error occurs. Nothing is written to the ESP32-C6 filesystem.
 
 - Real GPIO 3 acquisition: confirmed
 - Normal, low-light, high-light, and transition detection: confirmed
-- Physical RGB LED behavior: confirmed
+- Physical RGB activity under the old mapping: historically observed
+- Corrected named red/blue behavior: revalidation pending
 - Physical buzzer behavior: confirmed
 - Cooldown suppression and repeat during high light: confirmed
 - Recovery to the normal local state: confirmed

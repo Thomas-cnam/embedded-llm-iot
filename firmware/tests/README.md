@@ -17,9 +17,14 @@ tones, and tests the RGB LED and three serial LEDs in red, green, blue, white,
 and off states. It always attempts to stop PWM and turn all LEDs off before
 exiting.
 
-The combined smoke test was run manually in Thonny on 2026-07-13. All tested
-peripherals completed their sequence successfully, all expected visual and
-audible outputs were observed, and the safety cleanup turned all outputs off.
+The combined smoke test was run manually in Thonny on 2026-07-13. The run
+remains valid for the photoresistor, buzzer, serial LEDs, finite sequence, and
+cleanup. A later supervisor correction established that the PCB red and blue
+silkscreen labels are swapped, so the corrected RGB mapping must be tested
+again: red GPIO 21, green GPIO 11, blue GPIO 10.
+
+For the short repeat, open `test_rgb_led.py` in Thonny and run it manually.
+Verify red, green, blue, white, and off in order. Do not save it as `main.py`.
 
 ## Week 3 anomaly hardware integration test
 
@@ -36,9 +41,11 @@ files on the board and always attempts to turn the RGB LED and buzzer off. Do
 not save it as `main.py`.
 
 The test was run manually in Thonny on 2026-07-17. Real GPIO 3 acquisition,
-normal and anomalous states, RGB LED behavior, bounded buzzer tones, cooldown,
-recovery, continued acquisition, and final cleanup were confirmed. Detailed
-results are recorded in `docs/week3_hardware_integration_test.md`.
+normal and anomalous states, bounded buzzer tones, cooldown, recovery,
+continued acquisition, and final cleanup were confirmed. Historical RGB
+observations used the old red/blue interpretation and require a corrected
+physical repeat. Detailed results are recorded in
+`docs/week3_hardware_integration_test.md`.
 
 The JSON-enabled update was prepared on 2026-07-19 but has not yet been run on
 the ESP32-C6. Its manual procedure and evidence-capture rules are documented in

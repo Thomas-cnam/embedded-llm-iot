@@ -4,9 +4,9 @@ from machine import Pin
 
 
 class RgbLed:
-    """Control the RGB LED on GPIO 10, GPIO 11, and GPIO 21 by default."""
+    """Control the RGB LED on red 21, green 11, and blue 10 by default."""
 
-    def __init__(self, red_pin=10, green_pin=11, blue_pin=21, active_low=False):
+    def __init__(self, red_pin=21, green_pin=11, blue_pin=10, active_low=False):
         self.active_low = active_low
         self.red_pin = Pin(red_pin, Pin.OUT)
         self.green_pin = Pin(green_pin, Pin.OUT)

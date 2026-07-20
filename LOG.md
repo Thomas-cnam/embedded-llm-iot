@@ -1281,3 +1281,49 @@ MicroPython event-output correction.
 - No gateway, LLM, whitelist parser, or gateway-to-board command was added.
 - No Week 2 raw data was modified.
 - Week 3 remains in progress pending physical observation confirmation.
+
+## 2026-07-20
+
+### Goal
+
+Apply the supervisor-confirmed RGB pin correction while preserving historical
+hardware evidence and current detector behavior.
+
+### Work done
+
+- Recorded that the PCB red and blue silkscreen labels are swapped.
+- Corrected the functional RGB mapping to red GPIO 21, green GPIO 11, and blue
+  GPIO 10 in firmware and current documentation.
+- Replaced the `Student 1` and `Student 2` placeholders in `TEAM.md` with Thomas
+  and Maxime and documented the planned handover.
+- Added host-side regression tests for RGB default pins and hardware-test
+  constants.
+- Preserved previous journal entries and raw Week 3 console captures without
+  rewriting their historical output.
+- Prepared a finite manual RGB revalidation procedure.
+
+### Observations
+
+- Earlier named red and blue physical observations used the previous pin
+  interpretation and are superseded by the supervisor correction.
+- GPIO 11 remains the green channel.
+- White and off observations do not distinguish the swapped red and blue
+  channels.
+- Photoresistor acquisition, buzzer behavior, serial LEDs, detector logic,
+  cooldown, cleanup, JSON formatting, and gateway-independent logic are
+  unaffected.
+- No ESP32-C6 hardware test was run during this correction.
+- The complete host-side suite passed: 129 tests, 0 failures, 0 errors.
+
+### Issues / open questions
+
+- Red, green, blue, white, and off must be observed in a short physical repeat
+  test using the corrected mapping before RGB-dependent Week 3 validation can
+  be closed.
+
+### Next steps
+
+- Run `firmware/tests/test_rgb_led.py` manually in Thonny.
+- Record the actual physical observations before marking corrected RGB behavior
+  as validated.
+- Do not start gateway or local LLM work as part of this correction.

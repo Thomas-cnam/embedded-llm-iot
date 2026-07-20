@@ -57,3 +57,13 @@ event line.
 
 Do not add invented output or copy Week 2 baseline measurements into this
 folder.
+
+## RGB Mapping Correction
+
+On 2026-07-20, the supervisor confirmed that the PCB red and blue silkscreen
+labels are swapped. The correct mapping is red GPIO 21, green GPIO 11, and blue
+GPIO 10. The raw captures intentionally retain their original diagnostic line
+showing `GPIO 10 11 21`; editing that line would alter historical evidence.
+Sensor values, detector decisions, cooldown behavior, buzzer actions, and JSON
+events are unaffected. Physical RGB fields remain unconfirmed until a repeat
+test uses the corrected mapping.

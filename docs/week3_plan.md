@@ -66,17 +66,17 @@ Design decisions and all provisional values are documented in `anomaly_detector_
 - [x] Add concise firmware documentation and usage instructions
 
 The alert policy and local-alarm integration passed host-side simulated tests,
-and the first physical ESP32-C6 integration test passed on 2026-07-17. The
-provisional thresholds, timing, RGB states, and buzzer behavior now have one
-successful real-board validation but still require repeated trials before they
-are treated as final. JSON formatting and conditional one-event-per-line output
-are implemented and host-tested; real MicroPython capture remains pending.
+and the first physical ESP32-C6 integration test ran on 2026-07-17. Detector,
+sensor, buzzer, cooldown, and cleanup behavior have real-board evidence. The
+supervisor later corrected the RGB red/blue mapping, so the corrected named RGB
+states require a short physical repeat before validation.
 
 The finite guided hardware-integration script was run manually on 2026-07-17.
-Real sensor acquisition, RGB and buzzer behavior, cooldown, recovery, continued
-acquisition, and final cleanup were confirmed. JSON formatting and serial
-output were not part of that run. The JSON-enabled version now requires a new
-manual run and evidence capture.
+Real sensor acquisition, buzzer behavior, cooldown, recovery, continued
+acquisition, and final cleanup were confirmed. The historical RGB observations
+used the old red/blue interpretation and are preserved, but corrected color
+validation remains pending. JSON formatting and serial output were not part of
+that run.
 
 #### Pure anomaly-event formatting
 
@@ -92,7 +92,8 @@ manual run and evidence capture.
 
 The pure formatter passes 38 dedicated host tests, the 77 detector and
 integration tests still pass, and the 11 event-pipeline tests pass. The complete
-suite now contains 126 passing tests.
+suite now contains 129 passing tests after adding RGB pin-mapping regression
+coverage.
 The formatter now has two real MicroPython captures. The second capture
 validates compact output; physical observation confirmation remains pending.
 
@@ -127,7 +128,8 @@ physical LED and buzzer confirmation for this run remains pending.
 - [x] Test covered-sensor events on the real board
 - [x] Test strong-light events on the real board
 - [x] Test transitions between conditions and detector reset behavior
-- [x] Confirm RGB LED and buzzer responses are finite and deterministic
+- [x] Confirm buzzer responses are finite and deterministic
+- [ ] Revalidate RGB LED colors with red GPIO 21, green GPIO 11, and blue GPIO 10
 - [x] Confirm sensor acquisition continues after a physical alarm
 - [x] Capture structured alerts from the MicroPython console
 - [x] Record test conditions, observations, and unresolved issues in `LOG.md`
@@ -144,7 +146,8 @@ physical LED and buzzer confirmation for this run remains pending.
 ## Definition of Done
 
 - [x] The detector runs on the ESP32-C6 using the confirmed GPIO 3 sensor input
-- [x] Local RGB LED and buzzer alarms work without the gateway or local LLM
+- [x] Local buzzer alarms work without the gateway or local LLM
+- [ ] Corrected local RGB LED colors are physically validated without the gateway or local LLM
 - [x] Normal and anomalous scenarios produce reproducible, documented behavior
 - [x] Each detected event emits parseable structured JSON with the required fields
 - [x] Detector limitations and calibration decisions are documented
@@ -153,6 +156,14 @@ physical LED and buzzer confirmation for this run remains pending.
 ## Adjustment Notes
 
 Prefer the simplest detector supported by measured data. If Week 3 evidence shows that the initial method is unstable, adjust filtering or persistence rules and record the reason in `LOG.md`. Do not expand to optional sensors until the required photoresistor path is reliable.
+
+## RGB Mapping Correction
+
+On 2026-07-20, the supervisor confirmed that the PCB red and blue silkscreen
+labels are swapped. Current code uses red GPIO 21, green GPIO 11, and blue GPIO
+10. Earlier raw output and journal entries remain unchanged as historical
+evidence. Photoresistor, buzzer, detector, cooldown, cleanup, and JSON results
+are unaffected; corrected named RGB colors require manual revalidation.
 
 ## Out of Scope
 

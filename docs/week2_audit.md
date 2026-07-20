@@ -30,14 +30,14 @@ The peripheral test scripts have now been cleaned and standardized while preserv
 
 ## `firmware/tests/test_rgb_led.py`
 
-- Confirmed GPIO pins: GPIO 10 for red, GPIO 11 for green, GPIO 21 for blue; PCB labels `R(10)`, `G(11)`, and `B(21)`.
+- Confirmed GPIO pins: GPIO 21 for red, GPIO 11 for green, GPIO 10 for blue. The supervisor confirmed that the PCB red and blue silkscreen labels are swapped.
 - Execution is finite: Yes. The script shows red, green, blue, white, then turns the LED off.
 - Cleanup is implemented: Yes. The `finally` block turns the RGB LED off.
 - TODO values remain: No.
 - Third-party dependencies are used: No. It uses MicroPython `machine.Pin` and `time.sleep`.
 - Cleaned status: Standardized module docstring, confirmed `ACTIVE_LOW = False`, shared color duration constant, and `main()` entry point.
 - Potential improvements: Extract active-low handling and color setting into a reusable RGB LED module.
-- Ready for continued use: Yes.
+- Ready for continued use: Yes for manual revalidation with the corrected mapping; the corrected red and blue channels have not yet been physically revalidated.
 
 ## `firmware/tests/test_serial_led_strip.py`
 

@@ -29,6 +29,9 @@ transport abstraction is used.
 
 ## Required Device Files
 
+The current supervisor-confirmed RGB mapping is red GPIO 21, green GPIO 11,
+and blue GPIO 10. The PCB red and blue silkscreen labels are swapped.
+
 Before the manual test, upload the current package directories to the device
 root:
 
@@ -162,9 +165,15 @@ both runs.
 Physical RGB and buzzer observations for run 2 still require explicit operator
 confirmation.
 
+The preserved raw captures print the old RGB order `GPIO 10 11 21` because
+they were produced before the supervisor correction. This historical line must
+not be edited. It does not affect the captured ADC values, detector decisions,
+cooldown behavior, buzzer actions, or JSON events.
+
 ## Pending Validation
 
-- Confirm physical RGB LED colors and buzzer sounds for the repeat run.
+- Repeat and confirm physical RGB LED colors with red GPIO 21, green GPIO 11,
+  and blue GPIO 10; confirm buzzer sounds during that run.
 - Review results before closing Week 3.
 
 Gateway, LLM, whitelist, and gateway-to-board command work remain out of scope.

@@ -6,7 +6,8 @@ Do not guess GPIO numbers. Only fill this table after the pin mapping has been c
 
 ## Current status
 
-The main Week 1 peripheral pin mappings have been identified from PCB silkscreen labels. Functional tests are still required.
+The main peripheral mappings are confirmed. The supervisor clarified on
+2026-07-20 that the PCB silkscreen swaps the red and blue RGB labels.
 
 ## Pin mapping table
 
@@ -14,9 +15,9 @@ The main Week 1 peripheral pin mappings have been identified from PCB silkscreen
 |---|---:|---|---|---|
 | Photoresistor | GPIO 3 | ADC | Confirmed | PCB label: PHOTO(3) |
 | Passive buzzer | GPIO 5 | PWM | Confirmed | PCB label: BUZZER(5) |
-| RGB LED - Red | GPIO 10 | GPIO/PWM | Confirmed | PCB label: R(10); active high/low still to test |
-| RGB LED - Green | GPIO 11 | GPIO/PWM | Confirmed | PCB label: G(11); active high/low still to test |
-| RGB LED - Blue | GPIO 21 | GPIO/PWM | Confirmed | PCB label: B(21); active high/low still to test |
+| RGB LED - Red | GPIO 21 | GPIO/PWM | Supervisor-confirmed | PCB red/blue silkscreen labels are swapped; `active_low=False` |
+| RGB LED - Green | GPIO 11 | GPIO/PWM | Supervisor-confirmed | PCB label `G(11)` is correct; `active_low=False` |
+| RGB LED - Blue | GPIO 10 | GPIO/PWM | Supervisor-confirmed | PCB red/blue silkscreen labels are swapped; `active_low=False` |
 | Serial LED strip | GPIO 8 | One-wire / NeoPixel-compatible to confirm | Confirmed | PCB label: SERIAL_LED(8); 3 onboard LEDs visible; protocol to confirm by test |
 | Button | GPIO 2 | GPIO input | Confirmed | PCB label: BUTTON(2) |
 | HC-SR04 trigger | GPIO 15 | GPIO | Optional / confirmed from PCB | PCB label: TR(15) |
@@ -43,6 +44,9 @@ The main Week 1 peripheral pin mappings have been identified from PCB silkscreen
 
 ## Notes
 
-These mappings were identified from PCB silkscreen labels during manual board inspection. Functional tests are still required.
+Most mappings were initially identified from PCB silkscreen labels. The RGB
+mapping above supersedes the original red GPIO 10 / blue GPIO 21 interpretation
+after direct supervisor clarification. A short physical RGB repeat test is
+required before the corrected red and blue mapping is marked validated.
 
 The firmware test scripts must not be executed until the relevant TODO pins are replaced with confirmed values.

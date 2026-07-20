@@ -1,6 +1,6 @@
 """Finite MicroPython GPIO diagnostic for the ESP32-C6 RGB LED.
 
-Confirmed pins: red GPIO 10, green GPIO 11, blue GPIO 21.
+Supervisor-confirmed pins: red GPIO 21, green GPIO 11, blue GPIO 10.
 Confirmed behavior: ACTIVE_LOW = False.
 """
 
@@ -8,9 +8,9 @@ from machine import Pin
 from time import sleep
 
 
-PIN_RED = 10
+PIN_RED = 21
 PIN_GREEN = 11
-PIN_BLUE = 21
+PIN_BLUE = 10
 ACTIVE_LOW = False
 COLOR_DURATION_SECONDS = 1.5
 
@@ -40,7 +40,8 @@ def show_color(name, red_on, green_on, blue_on):
 
 def main():
     print("ESP32-C6 RGB LED test")
-    print("Using PCB labels: R(10), G(11), B(21)")
+    print("Using supervisor-confirmed mapping: red 21, green 11, blue 10")
+    print("PCB red and blue silkscreen labels are swapped.")
     print("ACTIVE_LOW =", ACTIVE_LOW)
 
     try:
