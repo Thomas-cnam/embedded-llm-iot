@@ -1,4 +1,5 @@
 from machine import Pin, ADC
+import esp32
 import time
 import sys
 import select
@@ -29,11 +30,11 @@ event_formatter = None
 def lire_luminosite():
     return photoresistor.read();
 
-# Prépare le poller une seule fois, en dehors de la boucle
 poller = select.poll()
 poller.register(sys.stdin, select.POLLIN)
 
 while True:
+    #ESP32 context
     photoresistor = Photoresistor(pin=PHOTORESISTOR_PIN)
     rgb_led = RgbLed(
         red_pin=RGB_RED_PIN,
@@ -44,17 +45,20 @@ while True:
     buzzer = Buzzer(pin=BUZZER_PIN)
     
     lum = lire_luminosite()
-    # Envoi des données sur le port série au format simple
-    print("DATA;" + "0" + ";" + str(lum)) 
+    temp = esp32.mcu_temperature()
+    #print data to port
+    print("DATA;" + str(temp) + ";" + str(lum)) 
 
     response = ""
-    if poller.poll(6000):  # attend jusqu'à 3000ms qu'il y ait des données
+    #get response from server
+    if poller.poll(6000):
         response = sys.stdin.readline().strip()
     print(response)
     
-    if response.startswith("ANOMALIE:1"):
+    #interpret response
+    if response.startswith("ANOMALY:1"):
         rgb_led.red()
-    elif response.startswith("ANOMALIE:0"):
+    elif response.startswith("ANOMALY:0"):
         rgb_led.green()
 
     time.sleep(10)
