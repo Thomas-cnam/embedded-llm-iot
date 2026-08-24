@@ -35,52 +35,44 @@ Confirmed GPIO mappings are documented in `docs/pin_mapping.md` and the hardware
 ```text
 embedded-llm-iot/
 ├── README.md
-├── TEAM.md
-├── LOG.md
 ├── .gitignore
-├── docs/
+├── tests/
+├── server/
 ├── firmware/
-├── gateway/
 ├── experiments/
-└── report/
+└── ESP/
 ```
 
-## Week 1 Status
+## how to use the project
 
-Week 1 is completed. Repository setup, team documentation, MicroPython access, pin identification, and the main peripheral tests are recorded in `LOG.md` and the Week 1 documentation.
+the "firmware" files regroup every test and peripherals that was developped for the first few week of the project.
+the "tests" files regroup test to show to the professor the functionnality of the ESP32 
+In those files the "preripherals" regroup every python class for different functionnality of the given ESP32.
 
-## Supervisor Sharing Note
+"ESP" files contain script for the ESP32
+"server" files are to run locally on the PC
 
-The repository should be shared with GitHub user: `matusformanek`.
+the LLM that was use come from ollama, this part must be installed seperatly, the models used was **phi4-mini** (worked) and **llama3.2:1b** (didnt worked)
 
-## Current Status
+for additionnal information on how each script worked read the "README.md" in each files
 
-- Week 1: completed
-- Week 2 hardware consolidation: completed
-- Main peripherals verified in MicroPython
-- Photoresistor baseline measurements recorded
-- Week 3 edge anomaly detector: completed
-- Corrected RGB mapping: red GPIO 21, green GPIO 11, blue GPIO 10
-- Corrected RGB mapping physically revalidated
-- Structured JSON events captured and validated
-- Gateway and local LLM work: not started
+## result of the project
 
-Week 3 evidence is summarized in [docs/week3_results.md](docs/week3_results.md)
-and stored under [experiments/week3](experiments/week3/README.md).
+in ProjectResult.png you can see what is logged by the server script
+they are two instances where i messed with the captor to make an anomaly
 
-## Project Planning
+## first intance
 
-The remaining work is organized as an adjustable plan through the August 29, 2026 deadline:
+value = 36776 lum.
+LLM answer = Jugement AI: {'anomaly': True, 'message': 'New measurement significantly higher than recent history average.'}
+ESP32 = red light turned on
 
-- [Project roadmap](docs/project_roadmap.md)
-- [Week 3: edge anomaly detector](docs/week3_plan.md)
-- [Week 4: Python gateway and first local LLM response](docs/week4_plan.md)
-- [Week 5: prompt engineering and safety parser](docs/week5_plan.md)
-- [Week 6: safe end-to-end integration](docs/week6_plan.md)
-- [Week 7: experimental benchmarking](docs/week7_plan.md)
-- [Week 8: report, cleanup, presentation, and submission](docs/week8_plan.md)
-- [Experimental metrics plan](docs/experimental_metrics_plan.md)
-- [Final report outline](docs/final_report_outline.md)
-- [Final submission checklist](docs/final_submission_checklist.md)
+it was atteigned by using the lamp function of my mobile phone
 
-Required deliverables are planned for completion by August 25. August 26–29 is reserved for corrections, verification, backups, and final submission rather than new required features.
+## second intance
+
+value = 0 lum.
+LLM answer = Jugement AI: {'anomaly': True, 'message': 'New luminosity value (0 lux) deviates significantly from recent history average (~25158 lux)'}
+ESP32 = red light turned on
+
+it was atteigned by using putting a black tee shirt on the captor

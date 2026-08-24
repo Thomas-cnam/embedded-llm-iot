@@ -3,7 +3,7 @@ import requests
 import json
 import time
 
-PORT = "COM6"
+PORT = "COM3"
 BAUD = 115200
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
